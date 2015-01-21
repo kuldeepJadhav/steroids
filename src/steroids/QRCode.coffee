@@ -12,7 +12,7 @@ class QRCode
         console.log terminalQRCode
     else
       steroidsCli.debug "QRCODE", "options data: #{@options.data}"
-      urlToOpen = "http://localhost:#{@options.port}/connect.html?qrcode=#{encodeURIComponent(@options.data)}"
+      urlToOpen = "http://localhost:#{@options.port}/__connect/connect.html?qrcode=#{encodeURIComponent(@options.data)}"
 
       steroidsCli.debug "Opening URL #{urlToOpen} in default web browser..."
       open urlToOpen

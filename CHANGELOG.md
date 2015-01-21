@@ -2,6 +2,7 @@
 
 Bugfixes:
  - Fixed a bug where a missing `<content>` tag caused Cordova project builds to error out.
+ - Fixed a bug where Bower components from the Steroids Connect screen were overriding app files in LiveReload mode. Closes [#746](https://github.com/AppGyver/steroids/issues/746).
 
 ## 4.0.7 (2014-12-23)
 

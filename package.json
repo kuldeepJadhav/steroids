@@ -88,7 +88,7 @@
     "express-json": "1.0.0",
     "winston": "0.7.3",
     "body-parser": "1.8.1",
-    "steroids-connect": "1.0.31",
+    "steroids-connect": "1.0.33",
     "tiny-lr": "http://appgyver-steroids.s3.amazonaws.com/tiny-lr-0.1.4-AppGyver-p0.tgz",
     "lodash": "2.4.1",
     "data.either": "1.2.0",
