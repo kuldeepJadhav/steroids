@@ -6,4 +6,4 @@ categories: known_issues
 platforms: Android
 ---
 
-This guide has been moved to AppGyver Academy, find it [here](https://academy.appgyver.com/categories/2-tooling/contents/87-legacy-android-44-known-issues).
+**Issue tracking moved to GitHub:** [https://github.com/AppGyver/steroids/issues/](https://github.com/AppGyver/steroids/issues/)

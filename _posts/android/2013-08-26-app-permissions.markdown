@@ -6,4 +6,4 @@ categories: android
 platforms: Android
 ---
 
-This guide has been moved to AppGyver Academy, find it [here](https://academy.appgyver.com/guides/66-android-app-permissions).
+This guide has been moved to docs.appgyver.com, find it [here](https://academy.appgyver.com/guides/66-android-app-permissions).

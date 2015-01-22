@@ -6,4 +6,4 @@ categories: steroids-js
 platforms: iOS, Android
 ---
 
-This guide has been moved to AppGyver Academy, find it [here](https://academy.appgyver.com/categories/9-project-configuration/contents/80-migrating-to-cordova-3x).
+This guide has been moved to docs.appgyver.com, find it [here](https://academy.appgyver.com/categories/9-project-configuration/contents/80-migrating-to-cordova-3x).

@@ -6,4 +6,4 @@ categories: cloud_services
 platforms: iOS
 ---
 
-This guide has been moved to AppGyver Academy, find it [here](https://academy.appgyver.com/categories/2-tooling/contents/55-building-a-debug-build).
+This guide has been moved to docs.appgyver.com, find it [here](http://docs.appgyver.com/tooling/build-service/build-settings/building-a-debug-build/).

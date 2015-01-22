@@ -6,4 +6,4 @@ categories: steroids-js
 platforms: iOS
 ---
 
-This guide has been moved to AppGyver Academy, find it [here](https://academy.appgyver.com/categories/4-app-architecture/contents/47-resetting-app-state).
+This guide has been moved to docs.appgyver.com, find it [here](https://academy.appgyver.com/categories/4-app-architecture/contents/47-resetting-app-state).

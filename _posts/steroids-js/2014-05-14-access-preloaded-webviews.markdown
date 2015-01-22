@@ -6,4 +6,4 @@ categories: steroids-js
 platforms: iOS, Android
 ---
 
-This guide has been moved to AppGyver Academy, find it [here](https://academy.appgyver.com/categories/4-app-architecture/contents/94-accessing-preloaded-webviews-from-different-parts-of-your-app).
+This guide has been moved to docs.appgyver.com, find it [here](https://academy.appgyver.com/categories/4-app-architecture/contents/94-accessing-preloaded-webviews-from-different-parts-of-your-app).

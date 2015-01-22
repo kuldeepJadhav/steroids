@@ -6,4 +6,4 @@ categories: steroids-js
 platforms: iOS, Android
 ---
 
-This guide has been moved to AppGyver Academy, find it [here](https://academy.appgyver.com/categories/5-utilizing-device-capabilities/contents/78-using-custom-url-schemes).
+This guide has been moved to docs.appgyver.com, find it [here](http://docs.appgyver.com/supersonic/guides/navigation/navigating-between-apps/communicating-with-external-apps/).

@@ -6,4 +6,4 @@ categories: project_configuration
 platforms: iOS, Android
 ---
 
-This guide has been moved to AppGyver Academy, find it [here](https://academy.appgyver.com/categories/9-project-configuration/contents/129-basic-app-settings-in-configapplicationcoffee).
+This guide has been moved to docs.appgyver.com, find it [here](http://docs.appgyver.com/supersonic/guides/architecture/app-config-files/).

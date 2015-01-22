@@ -6,4 +6,4 @@ categories: phonegap_on_steroids
 platforms: iOS, Android
 ---
 
-This guide has been moved to AppGyver Academy, find it [here](https://academy.appgyver.com/categories/3-user-interface-and-design/contents/65-setting-allowed-device-orientations-).
+This guide has been moved to docs.appgyver.com, find it [here](http://docs.appgyver.com/supersonic/guides/ui/app-rotations/).

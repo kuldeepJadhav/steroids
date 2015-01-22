@@ -6,4 +6,4 @@ categories: phonegap_on_steroids
 platforms: Android, iOS
 ---
 
-This guide has been moved to AppGyver Academy, find it [here](https://academy.appgyver.com/categories/4-app-architecture/contents/75-moving-from-file-protocol-to-localhost).
+This guide has been moved to docs.appgyver.com, find it [here](https://academy.appgyver.com/categories/4-app-architecture/contents/75-moving-from-file-protocol-to-localhost).

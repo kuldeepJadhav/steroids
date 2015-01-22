@@ -6,4 +6,4 @@ categories: known_issues
 platforms: iOS, Android
 ---
 
-**Native UI issues moved to GitHub:** [https://github.com/AppGyver/scanner/issues/20](https://github.com/AppGyver/scanner/issues/20)
+**Native UI issues moved to GitHub:** [https://github.com/AppGyver/steroids/issues/119](https://github.com/AppGyver/steroids/issues/119)

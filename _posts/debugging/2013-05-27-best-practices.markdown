@@ -6,4 +6,4 @@ categories: debugging
 platforms: iOS, Android
 ---
 
-This guide has been moved to AppGyver Academy, find it [here](https://academy.appgyver.com/categories/2-tooling/contents/59-debugging-best-practices).
+This guide has been moved to docs.appgyver.com, find it [here](http://docs.appgyver.com/tooling/cli/debugging/best-practices/).

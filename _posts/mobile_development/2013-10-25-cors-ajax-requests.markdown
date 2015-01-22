@@ -6,4 +6,4 @@ categories: mobile_development
 platforms: Android, iOS
 ---
 
-This guide has been moved to AppGyver Academy, find it [here](https://academy.appgyver.com/categories/6-working-with-data/contents/49-configuring-server-side-for-cors-ajax-requests).
+This guide has been moved to docs.appgyver.com, find it [here](https://academy.appgyver.com/categories/6-working-with-data/contents/49-configuring-server-side-for-cors-ajax-requests).

@@ -6,4 +6,4 @@ categories: steroids_platform
 platforms: iOS, Android
 ---
 
-This guide has been moved to AppGyver Academy, find it [here](https://academy.appgyver.com/categories/1-setup-and-getting-started/contents/4-updating-steroids-and-your-projects).
+This guide has been moved to docs.appgyver.com, find it [here](https://academy.appgyver.com/categories/1-setup-and-getting-started/contents/4-updating-steroids-and-your-projects).

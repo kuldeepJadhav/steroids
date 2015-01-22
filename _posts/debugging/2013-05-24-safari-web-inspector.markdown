@@ -6,4 +6,4 @@ categories: debugging
 platforms: iOS
 ---
 
-This guide has been moved to AppGyver Academy, find it [here](https://academy.appgyver.com/categories/2-tooling/contents/60-debugging-with-the-safari-web-inspector).
+This guide has been moved to docs.appgyver.com, find it [here](http://docs.appgyver.com/tooling/cli/debugging/debugging-on-ios/).

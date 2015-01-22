@@ -6,4 +6,4 @@ categories: project_configuration
 platforms: Android, iOS
 ---
 
-This guide has been moved to AppGyver Academy, find it [here](https://academy.appgyver.com/categories/3-user-interface-and-design/contents/73-configuring-splashscreens).
+This guide has been moved to docs.appgyver.com, find it [here](http://docs.appgyver.com/supersonic/guides/ui/splashscreen/).

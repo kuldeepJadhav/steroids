@@ -6,4 +6,4 @@ categories: steroids-js
 platforms: iOS
 ---
 
-This guide has been moved to AppGyver Academy, find it [here](https://academy.appgyver.com/categories/3-user-interface-and-design/contents/79-setting-webview-background-color).
+This guide has been moved to docs.appgyver.com, find it [here](https://academy.appgyver.com/categories/3-user-interface-and-design/contents/79-setting-webview-background-color).

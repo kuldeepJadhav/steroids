@@ -6,4 +6,4 @@ categories: debugging
 platforms: iOS, Android
 ---
 
-This guide has been moved to AppGyver Academy, find it [here](https://academy.appgyver.com/categories/2-tooling/contents/58-debugging-with-weinre).
+This guide has been deprecated, as Weinre is no longer officially supported. You can find the debugging guides index [here](http://docs.appgyver.com/tooling/cli/debugging/).

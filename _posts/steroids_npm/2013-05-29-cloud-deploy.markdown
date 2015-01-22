@@ -6,4 +6,4 @@ categories: steroids_npm
 platforms: iOS, Android
 ---
 
-This guide has been moved to AppGyver Academy, find it [here](https://academy.appgyver.com/categories/8-distribution/contents/64-deploying-your-app-to-the-cloud).
+This guide has been moved to docs.appgyver.com, find it [here](http://docs.appgyver.com/tooling/build-service/build-settings/deploying-to-cloud/).

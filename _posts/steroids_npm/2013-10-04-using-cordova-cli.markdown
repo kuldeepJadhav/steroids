@@ -6,4 +6,4 @@ categories: steroids_npm
 platforms: Android, iOS
 ---
 
-This guide has been moved to AppGyver Academy, find it [here](https://academy.appgyver.com/categories/2-tooling/contents/76-using-cordova-cli-with-your-steroids-project).
+This guide has been moved to docs.appgyver.com, find it [here](https://academy.appgyver.com/categories/2-tooling/contents/76-using-cordova-cli-with-your-steroids-project).

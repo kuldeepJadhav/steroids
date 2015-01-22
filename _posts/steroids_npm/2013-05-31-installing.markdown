@@ -6,4 +6,4 @@ categories: steroids_npm
 platforms: iOS, Android
 ---
 
-This guide has been moved to AppGyver Academy, find it [here](https://academy.appgyver.com/installwizard).
+Installing the Steroids CLI package is covered in our [Install Wizard](https://academy.appgyver.com/installwizard/)
