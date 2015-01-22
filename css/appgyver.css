@@ -40,6 +40,10 @@ img {
   max-width:628px;
 }
 
+#home h1 {
+  margin-bottom: 1em !important;
+}
+
 .faq {
   margin-top:1em;
 }
