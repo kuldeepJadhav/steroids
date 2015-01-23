@@ -3,6 +3,8 @@ AppGyver Steroids CLI
 
 AppGyver Steroids 2 is PhoneGap on Steroids, providing native UI elements, multiple WebViews and enhancements for better developer productivity.
 
+![Travis CI status](https://travis-ci.org/AppGyver/steroids.svg)
+
 ## Requirements
 
 * Node.js 0.10.x and NPM

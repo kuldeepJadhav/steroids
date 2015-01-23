@@ -4,7 +4,7 @@ skipWhen process.env.STEROIDS_TEST_RUN_MODE, "fast"
 
 describe 'deploy', ->
 
-  afterEach ->
+  afterEach =>
     if @testRunDone
       console.log "DONNNEEE"
       @session.kill()
@@ -52,8 +52,9 @@ describe 'deploy', ->
 
   it "packages", =>
     packaged = false
+
     waitsFor =>
-      packaged = @session.stdout.match("package exited with code 0")
+      packaged = @session.stdout.match("Zip created, timestamp")
 
     runs ->
       expect( packaged ).toBeTruthy()

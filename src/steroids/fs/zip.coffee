@@ -26,7 +26,14 @@ class Zip
       zipCommand = path.join Paths.vendor, "7zip", "7za"
       fromPath = path.join @from, "*"
       zipArgs = ["a", @to, fromPath]
-      childProcess.spawn zipCommand, zipArgs
+      zip = childProcess.spawn zipCommand, zipArgs
+
+      zip.on "close", (code, signal)->
+        timestamp = (new Date).getTime()
+        steroidsCli.debug "Zip created, timestamp: #{timestamp}"
+
+        callback.apply(null, [timestamp]) if callback?
+
     # use OS supplied zip on OSX/Linux
     else
 

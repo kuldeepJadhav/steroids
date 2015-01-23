@@ -1,5 +1,6 @@
 TestHelper = require "../test_helper"
 
+
 describe 'connect', ->
 
   describe 'start', ->
@@ -44,7 +45,7 @@ describe 'connect', ->
     it "packages", =>
       packaged = false
       waitsFor =>
-        packaged = @session.stdout.match("steroids package")
+        packaged = @session.stdout.match("Zip created, timestamp")
 
       runs =>
         expect( packaged ).toBeTruthy()

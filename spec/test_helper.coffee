@@ -4,6 +4,9 @@ path = require "path"
 
 CommandRunner = require "./command_runner"
 
+# https://github.com/mhevery/jasmine-node/pull/142
+require "./monkeypatch_timeout"
+
 greatContains = (givenItem, arrayOrString) ->
   items = if arrayOrString.constructor.name == "String"
     [arrayOrString]

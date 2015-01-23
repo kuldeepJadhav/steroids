@@ -123,8 +123,8 @@ class Deploy
         steroidsCli.debug "DEPLOY", "Updated application zip to S3"
         resolve()
 
-      uploadRequest.on "error", ->
-        reject new DeployError "Error uploading application code to cloud."
+      uploadRequest.on "error", (error)->
+        reject new DeployError "Error uploading application code to cloud: #{error}"
 
   updateConfigurationFile: =>
     new Promise (resolve, reject) =>

@@ -74,7 +74,7 @@ class CordovaConfig
         location = "index.html"
         return
 
-      location = result?.widget?.content[0]?.$?.src || "index.html"
+      location = result?.widget?.content?[0].$?.src || "index.html"
 
     "http://localhost/#{location}"
 

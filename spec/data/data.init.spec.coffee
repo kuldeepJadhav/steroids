@@ -5,9 +5,8 @@ skipWhen process.env.STEROIDS_TEST_RUN_ENVIRONMENT, "travis"
 
 describe 'data', ->
 
-  afterEach ->
+  afterEach =>
     if @testRunDone
-      console.log "DONNNEEE"
       @session.kill()
 
   rightHereRightNow =>
@@ -40,7 +39,7 @@ describe 'data', ->
     it "notices that config/sandboxdb.yaml is missing", =>
       done = false
       waitsFor =>
-        done = @session.stdout.match("Configuration file config/sandboxdb.yaml was missing")
+        done = @session.stdout.match(/Configuration file \/.*\/config\/sandboxdb.yaml was missing/)
 
       runs =>
         expect( done ).toBeTruthy()
@@ -56,7 +55,7 @@ describe 'data', ->
     it "acually succeeds in provisioning a new sandboxdb", =>
       done = false
       waitsFor =>
-        done = @session.stdout.match("Provisioning Sandbox DB returned success: {")
+        done = @session.stdout.match("Provisioned Sandbox DB")
 
       runs =>
         expect( done ).toBeTruthy()
@@ -64,7 +63,7 @@ describe 'data', ->
     it "writes the sandboxdb configuration to config/sandboxdb.yaml", =>
       done = false
       waitsFor =>
-        done = @session.stdout.match("Writing configuration to file config/sandboxdb.yaml")
+        done = @session.stdout.match(/Writing configuration to file \/.*\/config\/sandboxdb.yaml/)
 
       runs =>
         expect( done ).toBeTruthy()
@@ -72,7 +71,7 @@ describe 'data', ->
     it "acually succeeds in writing to config/sandboxdb.yaml", =>
       done = false
       waitsFor =>
-        done = @session.stdout.match("Writing configuration to file config/sandboxdb.yaml was success")
+        done = @session.stdout.match(/Writing configuration to file \/.*\/config\/sandboxdb.yaml was success/)
 
       runs =>
         expect( done ).toBeTruthy()
@@ -80,7 +79,7 @@ describe 'data', ->
     it "checks for a sandboxdb provider from the cloud", =>
       done = false
       waitsFor =>
-        done = @session.stdout.match("Getting a provider for backend appgyver_sandbox")
+        done = @session.stdout.match("PROVIDER: Getting a provider for backend AppGyver Sandbox Database")
 
       runs =>
         expect( done ).toBeTruthy()
@@ -96,7 +95,7 @@ describe 'data', ->
     it "creates a new provider to cloud", =>
       done = false
       waitsFor =>
-        done = @session.stdout.match("Creating a new provider appgyver_sandbox ID: 6 to cloud")
+        done = @session.stdout.match("PROVIDER: Creating a new provider AppGyver Sandbox Database ID: 6 to cloud returned success: {")
 
       runs =>
         expect( done ).toBeTruthy()

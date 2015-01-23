@@ -8,15 +8,8 @@ describe 'genymotion', ->
 
   describe 'start', =>
 
-    beforeEach =>
-      @oldDefaultTimeoutInterval = jasmine.getEnv().defaultTimeoutInterval
-      jasmine.getEnv().defaultTimeoutInterval = 20000
-
     afterEach =>
-      jasmine.getEnv().defaultTimeoutInterval = @oldDefaultTimeoutInterval
-
       if @testRunDone
-
         @session.kill()
 
         TestHelper.run

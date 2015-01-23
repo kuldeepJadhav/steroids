@@ -62,6 +62,7 @@ class SandboxDB
         if err?
           reject new ConnectionError "Could not connect to Sandbox DB"
         else if res.statusCode == 200 and body.code == 201 # The fuq?
+          steroidsCli.debug "SANDBOXDB", "Provisioned Sandbox DB"
           @fromApiSchemaDict(body.body)
           resolve()
         else

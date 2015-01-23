@@ -19,9 +19,8 @@ class CommandRunner
 
   run:() =>
     if @options.debug
-      console.log "starting cmd: #{@cmd}"
-      console.log "args: #{@args}"
-      console.log "cwd: #{@cwd}"
+      now = new Date
+      console.log "#{now.toISOString()} - starting cmd: #{@cmd}, args: #{@args}, cwd: #{@cwd}"
 
     @spawned = spawn @cmd, @args, { cwd: @cwd }
 
@@ -53,9 +52,12 @@ class CommandRunner
         @done = true
       , @options.waitsFor
 
-    waitsFor(()=>
-      return @done
-    , "CommandRunner: cmd never exited", @timeout)
+    if @options.allowNeverExit
+      console.log "Allowing #{@cmd} to never exit"
+    else
+      waitsFor(()=>
+        return @done
+      , "CommandRunner: cmd never exited", @timeout)
 
   kill:() =>
     @spawned.kill('SIGKILL')

@@ -52,28 +52,28 @@ describe 'data', ->
       runs =>
         expect( done ).toBeTruthy()
 
-    it "writes the configuration to config/cloud.raml", =>
+    it "writes the configuration to config/cloud-resources.raml", =>
       done = false
       waitsFor =>
-        done = @session.stdout.match("Writing data configuration to project")
+        done = @session.stdout.match /PROVIDER: writing current data configuration to file: \/.*\/config\/cloud-resources.raml/
 
       runs =>
         expect( done ).toBeTruthy()
 
-    it "acually succeeds in writing configuration to config/cloud.raml", =>
+    it "acually succeeds in writing configuration to config/cloud-resouces.raml", =>
       done = false
       waitsFor =>
-        done = @session.stdout.match("Wrote current data configuration to file: config/cloud.raml")
+        done = @session.stdout.match /PROVIDER: Wrote current data configuration to file: \/.*\/config\/cloud-resources.raml/
 
       runs =>
         expect( done ).toBeTruthy()
 
-    it "acually creates a config/cloud.raml file", =>
+    it "acually creates a config/cloud-resources.raml file", =>
       runs =>
         fs = require "fs"
         path = require "path"
 
-        expect(fs.existsSync path.join(@testHelper.testAppPath, "config", "cloud.raml")).toBe true
+        expect(fs.existsSync path.join(@testHelper.testAppPath, "config", "cloud-resources.raml")).toBe true
 
     it "kills the testrun", =>
       @testRunDone = true

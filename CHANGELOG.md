@@ -1,4 +1,22 @@
-## 4.0.5 (TODO)
+## 4.0.8 (2014-01-23)
+
+Changes:
+- Updated Android simulator to 4.0.4
+- Updated iOS simulator to 4.0.3
+
+Bugfixes:
+ - Fixed a bug where a missing `<content>` tag caused Cordova project builds to error out.
+ - Fixed a bug where Bower components from the Steroids Connect screen were overriding app files in LiveReload mode. Closes [#746](https://github.com/AppGyver/steroids/issues/746).
+
+## 4.0.7 (2014-12-23)
+
+4.0.6 rollback reverted, Windows bug detailed in 4.0.6 changelog fixed. `steroids connect` now works in Cordova projects, see 4.0.5 changelog below for details.
+
+## 4.0.6 (2014-12-22)
+
+Rollbacking 4.0.5 changes due to a bug discovered in Windows 7 that causes the Steroids Development Server to not show up. A fix will be provided with 4.0.7 ASAP.
+
+## 4.0.5 (2014-12-22)
 
 Experimental: run `steroids connect` in Cordova projects to test, develop and share your Cordova apps with Steroids Tooling.
 
