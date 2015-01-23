@@ -1,4 +1,8 @@
-## 4.0.8 (TODO)
+## 4.0.8 (2014-01-23)
+
+Changes:
+- Updated Android simulator to 4.0.4
+- Updated iOS simulator to 4.0.3
 
 Bugfixes:
  - Fixed a bug where a missing `<content>` tag caused Cordova project builds to error out.
