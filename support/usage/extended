@@ -1,6 +1,6 @@
 #bold[#magenta[Extended usage information:]]
 
-  Disable options wiht #cyan[--no-option] e.g. #cyan[--no-connect]
+  Disable options with #cyan[--no-option] e.g. #cyan[--no-connect]
 
   #bold[connect]
 
