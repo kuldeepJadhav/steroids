@@ -89,7 +89,6 @@ environment:
 #     - platform: x64
 #       configuration: Release
 
-environment:
   matrix:
     - nodejs_version: 0.10
     - nodejs_version: 0.8
