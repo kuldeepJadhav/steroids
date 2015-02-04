@@ -210,7 +210,7 @@ test_script:
   - npm --version
   - ps: steroids version
   - cmd: steroids version
-  - steroids create __testApp --type=mpa --language=coffee
+  - cmd: steroids create __testApp --type=mpa --language=coffee
   - cd __testApp
   - steroids logout
   - steroids make
