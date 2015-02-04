@@ -6,7 +6,7 @@ AppGyver Steroids 2 is PhoneGap on Steroids, providing native UI elements, multi
 ## Build status
 
 
-OS X / Linux: [![OS X / Linux build status] Status](https://travis-ci.org/AppGyver/steroids.svg)](https://travis-ci.org/AppGyver/steroids)
+OS X / Linux: [![Build status in Travis CI](https://travis-ci.org/AppGyver/steroids.svg)](https://travis-ci.org/AppGyver/steroids)
 
 Windows: [![Windows build status](https://ci.appveyor.com/api/projects/status/kbef0afl6cxu65qv?svg=true)](https://ci.appveyor.com/project/rdanderson/steroids)
 
