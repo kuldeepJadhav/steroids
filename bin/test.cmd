@@ -2,7 +2,7 @@ echo -- Steroids Windows Testrun --
 echo without specs, because those wont run (0 specs, 0 failures)
 echo wat.
 
-rd /s /q __testApp
+if exist "__testApp" rd /s /q "__testApp"
 steroids create __testApp --type=mpa --language=coffee
 cd __testApp
 
