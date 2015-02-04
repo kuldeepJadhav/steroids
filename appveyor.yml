@@ -212,7 +212,6 @@ test_script:
   - cmd: steroids version
   - cmd: steroids create __testApp --type=mpa --language=coffee
   - cd __testApp
-  - steroids logout
   - steroids make
   - steroids generate
 
