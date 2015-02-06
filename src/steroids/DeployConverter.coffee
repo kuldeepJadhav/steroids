@@ -36,6 +36,7 @@ class DeployConverter
     initial_eval_js_string: ""
     background_eval_js_string: ""
     latest_build_built_by: "steroids"
+    latest_build_built_at: parseInt(new Date().getTime()/1000)
     nav_bar_portrait_background_image: @config.navigationBar?.portrait?.backgroundImage ? ""
     nav_bar_landscape_background_image: @config.navigationBar?.landscape?.backgroundImage ? ""
     nav_bar_tint_color: @config.navigationBar?.tintColor ? ""
