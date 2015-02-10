@@ -63,9 +63,9 @@ Run with `$ steroids` command.
 
 ## Bugs, feedback
 
-Please report bugsinto this GitHub repositories issues. Please include a repro and all information about the situation in which the bug appears, including all runtimes.
+Please report bugs into this repository's [issue tracker](https://github.com/AppGyver/steroids/issues/). Please include a repro and all information about the situation in which the bug appears, including OS, Steroids and Node version number, possible AppGyver Scanner versions etc.
 
-We want to get your feedback! Drop us a mail at contact@appgyver.com
+We also want to get your feedback! Drop us a mail at contact@appgyver.com
 
 ## Testing npm
 
@@ -78,8 +78,7 @@ To run unit tests:
 
 ## Contributing
 
-We gladly accept pull requests! However, please include only one feature or fix per one pull request.
-That way, it will be much easier to review and merge each one contribution.
+We gladly accept pull requests! However, please include only one feature or fix per one pull request. It will be much easier to review and merge each contribution.
 
 To develop Steroids-npm locally:
 
