@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+
+TARGET=$1
+
+NODE_PATH=`which node`
+
+if [[ $? != 0 ]]; then
+  echo "Executable node not found."
+  NODE_PATH=`which nodejs`
+  if [[ $? != 0 ]]; then
+    echo "Executable nodejs not found."
+
+    echo ""
+    echo "Could not find Node.js executable. Please ensure you have a working"
+    echo "Node.js installation, and refer to the install wizard at"
+    echo ""
+    echo "https://academy.appgyver.com/installwizard"
+
+    exit 1
+  fi
+fi
+
+"$NODE_PATH" "$TARGET"

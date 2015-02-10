@@ -35,8 +35,7 @@
     "steroids": "./bin/steroids"
   },
   "scripts": {
-    "preinstall": "node ./bin/preinstall",
-    "install": "node ./bin/install"
+    "preinstall": "./bin/node-wrapper ./bin/preinstall.js"
   },
   "keywords": [
     "steroids.js",

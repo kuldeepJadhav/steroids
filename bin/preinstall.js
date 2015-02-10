@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 var cp = require("child_process"),
     exec = cp.exec,
     path = require("path"),
