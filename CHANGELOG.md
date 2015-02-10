@@ -2,6 +2,7 @@
 
 Bugfixes:
 - Fixed a bug where the Steroids preinstall script would fail on certain Linux distros that have a `nodejs` instead of a `node` executable.
+- Fixed an issue on Mac when Lo has multiple addresses. Thanks to @mikey0000 for the PR!
 
 ## 4.0.8 (2014-01-23)
 
