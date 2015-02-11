@@ -60,3 +60,7 @@ module.exports = class ConfigJsonGenerator
             feature: "http://appgyver.com/steroids/addons/urbanairship"
             legacyKey: "enabled"
             legacyValue: if value then "true" else "false"
+      else
+        feature: null
+        legacyKey: null
+        legacyValue: null
