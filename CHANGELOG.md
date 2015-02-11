@@ -1,3 +1,7 @@
+## 4.0.11 (2015-02-11)
+
+Fix preinstall script on Windows harder.
+
 ## 4.0.10 (2015-02-11)
 
 Fix preinstall script on Windows.
