@@ -1,3 +1,7 @@
+## 4.0.10 (2015-02-11)
+
+Fix preinstall script on Windows.
+
 ## 4.0.9 (2015-02-11)
 
 Bugfixes and friendlier error messages.
