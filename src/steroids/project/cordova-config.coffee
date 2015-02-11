@@ -1,6 +1,7 @@
 _ = require "lodash"
 paths = require "../paths"
 features = require '../features'
+Help = require '../Help'
 
 class CordovaConfig
 
@@ -13,7 +14,7 @@ class CordovaConfig
 
     @theme = "black"
 
-    @location = @getStartLocation()
+    @location = null
 
     @preloads = []
     @drawers = {}
@@ -68,17 +69,29 @@ class CordovaConfig
     parser = new xml2js.Parser()
     configXmlData = fs.readFileSync paths.cordovaSupport.configXml
 
-    location = "index.html"
+    location = null
     parser.parseString configXmlData, (err, result) ->
       if err
-        location = "index.html"
-        return
+        throw new Error err.message
 
       location = result?.widget?.content?[0].$?.src || "index.html"
 
     "http://localhost/#{location}"
 
-  getCurrent: ->
-    return new CordovaConfig
+  getCurrent: =>
+    try
+     @location = @getStartLocation()
+    catch error
+      Help.error()
+      console.error """
+        Could not parse configuration for your Cordova project.
+        Please ensure the file at #{paths.cordovaSupport.configXml} is valid XML.
+
+        #{error}
+        """
+
+      process.exit 1
+
+    @
 
 module.exports = CordovaConfig

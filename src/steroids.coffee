@@ -591,13 +591,13 @@ module.exports =
     d.on 'error', (err) ->
 
       if err.name == "PlatformError"
-        steroidsCli.log "Operating system not supported"
+        steroidsCli?.log "Operating system not supported"
       else
         console.log "Steroids Error"
 
         console.log """
         Debug Log:
-        #{steroidsCli.debugMessages?.join("\n")}
+        #{steroidsCli?.debugMessages?.join("\n")}
 
         Error with: steroids #{process.argv[2]}
 
