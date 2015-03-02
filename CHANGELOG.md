@@ -1,3 +1,7 @@
+## 4.0.12 (2015-03-02)
+
+Update `request`, `winston`, `xmlbuilder` and `chokidar` dependencies to latest versions to get rid of installation warnings and errors.
+
 ## 4.0.11 (2015-02-11)
 
 Fix preinstall script on Windows harder.
