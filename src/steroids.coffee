@@ -411,7 +411,7 @@ class Steroids
         console.log "see: steroids debug"
 
       when "emulate"
-        PortChecker = require "./steroids/Portchecker"
+        PortChecker = require "./steroids/PortChecker"
         connectServer = new PortChecker
           port: 4567
 
