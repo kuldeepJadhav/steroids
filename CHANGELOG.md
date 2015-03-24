@@ -1,3 +1,7 @@
+## 4.0.13 (2015-03-24)
+
+Fix a bug that prevented the `steroids emulate` command from being used on Linux.
+
 ## 4.0.12 (2015-03-02)
 
 Update `request`, `winston`, `xmlbuilder` and `chokidar` dependencies to latest versions to get rid of installation warnings and errors.
