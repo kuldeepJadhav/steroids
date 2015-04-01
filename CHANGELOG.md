@@ -1,3 +1,7 @@
+## 4.0.15 (2015-04-01)
+
+Skip preinstall checks in non-interactive shell environments, eg. Travis-CI and Heroku.
+
 ## 4.0.14 (2015-04-01)
 
 Allow `steroids deploy` to accept a `--builder` parameter to distinguish deployments of user-built apps from deployments of apps built with AppGyver platform services.
