@@ -1,3 +1,7 @@
+## 4.0.14 (2015-04-01)
+
+Allow `steroids deploy` to accept a `--builder` parameter to distinguish deployments of user-built apps from deployments of apps built with AppGyver platform services.
+
 ## 4.0.13 (2015-03-24)
 
 Fix a bug that prevented the `steroids emulate` command from being used on Linux.
