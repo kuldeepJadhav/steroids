@@ -274,6 +274,17 @@ class Steroids
 
         packager.create()
 
+      when "module"
+        runModuleCommand = require "./steroids/module/runCommand"
+        [ cmd, params... ] = otherOptions
+
+        runModuleCommand(cmd, argv)
+          .catch (error) ->
+            if error.message.match /Please run again with/
+              console.log "Error:", error.message
+            else
+              throw error
+
       when "simulator"
         console.log "see: steroids emulate"
 
