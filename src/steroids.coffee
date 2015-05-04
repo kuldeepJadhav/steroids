@@ -1,5 +1,7 @@
+global.Promise = require("bluebird")
+global.argv = require('optimist').argv
+
 path = require "path"
-argv = require('optimist').argv
 util = require "util"
 open = require "open"
 fs = require "fs"
@@ -8,7 +10,6 @@ chalk = require "chalk"
 Help = require "./steroids/Help"
 paths = require "./steroids/paths"
 
-global.Promise = require("bluebird")
 Promise.onPossiblyUnhandledRejection (e, promise) ->
   throw e
 
