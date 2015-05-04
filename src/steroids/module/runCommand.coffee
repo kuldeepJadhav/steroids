@@ -1,12 +1,20 @@
-paths = require('../paths')
-fs = require('fs')
+fs = require 'fs'
+
+paths = require '../paths'
+http = require '../httpRequest'
 
 module.exports = runModuleCommand = (cmd, argv) ->
   switch cmd
     when "init"
       Promise.resolve(argv)
         .then(parseArgs)
-        .then(writeConfig)
+        .then(stringifyPrettyJson)
+        .then(writeJsonStringTo paths.application.configs.env)
+
+    when "refresh"
+      Promise.resolve(argv)
+        .then(retrieveEnvironment getAppId())
+        .then(writeJsonStringTo paths.application.configs.module)
 
 parseArgs = (argv) ->
   opts = {
@@ -20,6 +28,10 @@ parseArgs = (argv) ->
 
   opts
 
+getAppId = ->
+  config = require paths.application.configs.env
+  config.appId
+
 stringifyPrettyJson = (json) ->
   JSON.stringify(
     dataToEncode = json
@@ -27,8 +39,11 @@ stringifyPrettyJson = (json) ->
     indentBy = 2
   )
 
-writePrettyJson = (filename, json) ->
-  fs.writeFileSync filename, stringifyPrettyJson(json)
+writeJsonStringTo = (filename) -> (json) ->
+  fs.writeFileSync filename, json
 
-writeConfig = (json) ->
-  writePrettyJson paths.application.configs.env, json
+retrieveEnvironment = (id) -> (argv) ->
+  http.requestAuthenticated(
+    "GET"
+    "https://env-api.devgyver.com/api/v1/applications/#{id}/environment"
+  )
