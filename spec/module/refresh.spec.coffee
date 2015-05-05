@@ -63,13 +63,12 @@ describe "module", ->
       it 'writes the module config when running module refresh', =>
         fs.unlinkSync moduleConfigFilename
 
-        waitsFor =>
-          @testHelper.runInProject
-            args: [
-              "module",
-              "refresh"
-              "--envApiHost=https://env-api.devgyver.com"
-            ]
+        @testHelper.runInProject
+          args: [
+            "module",
+            "refresh"
+            "--envApiHost=https://env-api.devgyver.com"
+          ]
 
         runs =>
           expect( fs.existsSync(moduleConfigFilename) ).toBeTruthy()

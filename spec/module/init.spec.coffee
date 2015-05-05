@@ -30,27 +30,19 @@ describe "module", ->
         waitsFor =>
           done = @failedSession.stdout.match "Please run again with"
         runs =>
-          expect(done).toBeTruthy
+          expect(done).toBeTruthy()
 
     describe "successfully", =>
       it 'runs the command which is parsed later in these tests', =>
-        runs =>
-          @session = @testHelper.runInProject
-            args: ["module", "init", "--app-id=123", "--auth-token=456", "--api-key=abbacd"]
+        @session = @testHelper.runInProject
+          args: ["module", "init", "--app-id=123", "--auth-token=456", "--api-key=abbacd"]
 
       it "writes the configuration in file", =>
-        done = false
-        waitsFor =>
-          done = fs.existsSync envConfigFilename
-
-        runs =>
-          expect( done ).toBeTruthy()
+        expect( fs.existsSync envConfigFilename ).toBeTruthy()
 
       it "writes given parameters to the env file", =>
-        done = false
         config = require envConfigFilename
 
-        runs =>
-          expect( config.appId ).toEqual 123
-          expect( config.authToken ).toEqual 456
-          expect( config.apiKey ).toEqual "abbacd"
+        expect( config.appId ).toEqual 123
+        expect( config.authToken ).toEqual 456
+        expect( config.apiKey ).toEqual "abbacd"
