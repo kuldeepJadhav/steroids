@@ -8,15 +8,26 @@ RuntimeConfig = require '../RuntimeConfig'
 module.exports = runModuleCommand = (cmd, argv) ->
   switch cmd
     when "init"
-      Promise.resolve(argv)
-        .then(parseArgs)
-        .then(stringifyPrettyJson)
-        .then(writeJsonStringTo paths.application.configs.env)
+      commands.init(argv)
 
     when "refresh"
-      getAppId()
-        .then(retrieveEnvironment)
-        .then(writeJsonStringTo paths.application.configs.module)
+      commands.refresh()
+
+
+commands = {
+  init: (argv) ->
+    Promise.resolve(argv)
+      .then(parseArgs)
+      .then(stringifyPrettyJson)
+      .then(writeJsonStringTo paths.application.configs.env)
+      .then(commands.refresh)
+
+  refresh: ->
+    getAppId()
+      .then(retrieveEnvironment)
+      .then(writeJsonStringTo paths.application.configs.module)
+}
+
 
 parseArgs = (argv) ->
   opts = {
