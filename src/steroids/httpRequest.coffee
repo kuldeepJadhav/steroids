@@ -10,7 +10,7 @@ run = (params) ->
       else if res.statusCode == 200 or res.statusCode == 201
         resolve data
       else
-        reject new Error "Failed with unknown error"
+        reject new Error "Failed with unknown error, HTTP status '#{res.statusCode}', url '#{res.request.uri.href}'"
     )
 
 runAuthenticated = (method, url) ->
