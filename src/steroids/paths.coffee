@@ -123,7 +123,7 @@ class Paths
 
   @userHome: if process.platform == 'win32' then process.env.USERPROFILE else process.env.HOME
   @storedSettings: path.join @userHome, ".appgyver"
-  @oauthTokenPath: path.join @storedSettings, "token.json"
+  @oauthTokenPath: global.argv.oauthTokenPath ? path.join @storedSettings, "token.json"
 
   @rippleBinary: path.join @npm, "node_modules", "ripple-emulator", "bin", "ripple"
 
