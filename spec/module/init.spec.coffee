@@ -23,7 +23,7 @@ describe "module", ->
       it 'runs the command which is parsed later in these tests', =>
         runs =>
           @failedSession = @testHelper.runInProject
-            args: ["module", "init", "--app-id=", "--user-id", ""]
+            args: ["module", "init", "--app-id=", "--auth-token", ""]
 
       it "fails with human readable error", =>
         done = false
@@ -36,7 +36,7 @@ describe "module", ->
       it 'runs the command which is parsed later in these tests', =>
         runs =>
           @session = @testHelper.runInProject
-            args: ["module", "init", "--app-id=123", "--user-id=456", "--api-key=abbacd"]
+            args: ["module", "init", "--app-id=123", "--auth-token=456", "--api-key=abbacd"]
 
       it "writes the configuration in file", =>
         done = false
@@ -52,5 +52,5 @@ describe "module", ->
 
         runs =>
           expect( config.appId ).toEqual 123
-          expect( config.userId ).toEqual 456
+          expect( config.authToken ).toEqual 456
           expect( config.apiKey ).toEqual "abbacd"
