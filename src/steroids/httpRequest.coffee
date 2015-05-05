@@ -2,7 +2,7 @@ request = require "request"
 
 Login = require "./Login"
 
-run= (params) ->
+run = (params) ->
   new Promise (resolve, reject) ->
     request(params, (err, res, data) ->
       if err?
