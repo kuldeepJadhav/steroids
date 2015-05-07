@@ -11,7 +11,9 @@ echo "Git status ok?"
 
 read
 
+echo ""
 echo "Versioning the npm, now it's a good time to CTRL+C if you don't want to patch?"
+echo "--> ^C and then run '$0 minor' unless you want a patch level version."
 
 read
 
