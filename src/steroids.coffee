@@ -215,10 +215,11 @@ class Steroids
           typePrompt =
             type: "list"
             name: "type"
-            message: "Do you want to create a Multi-Page or Single-Page Application?"
+            message: "What do you want to create?"
             choices: [
               { name: "Multi-Page Application (Supersonic default)", value: "mpa" }
               { name: "Single-Page Application (for use with other frameworks)", value: "spa"}
+              { name: "Module Development Harness (to develop custom modules)", value: "module"}
             ]
             default: "mpa"
 

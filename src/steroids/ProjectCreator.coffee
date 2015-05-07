@@ -7,13 +7,16 @@ class ProjectCreator
 
   run: () ->
     new Promise (resolve) =>
-      steroidsGenerator = require "generator-steroids"
-      steroidsGenerator.app {
-        skipInstall: true
-        projectName: @targetDirectory
-        appType: @type
-        scriptExt: @language
-      }, resolve
+      if @type is "module"
+        @createModuleProject()
+      else
+        steroidsGenerator = require "generator-steroids"
+        steroidsGenerator.app {
+          skipInstall: true
+          projectName: @targetDirectory
+          appType: @type
+          scriptExt: @language
+        }, resolve
 
   update: =>
 
@@ -37,6 +40,23 @@ class ProjectCreator
 
         if session.code != 0 || session.stdout.match(/npm ERR!/)
           reject new Error "\nSomething went wrong - try running #{chalk.bold('steroids update')} manually in the project directory."
+
+        resolve()
+
+  createModuleProject: =>
+    new Promise (resolve, reject) =>
+      sbawn = require "./sbawn"
+      paths = require "./paths"
+      path = require "path"
+      session = sbawn
+        cmd: path.join paths.scriptsDir, "createModuleProject.sh"
+        args: [@targetDirectory, @language]
+        stdout: true
+        stderr: true
+
+      session.on 'exit', ->
+        if session.code != 0 || session.stdout.match(/npm ERR!/)
+          reject new Error "Something went wrong!"
 
         resolve()
 
