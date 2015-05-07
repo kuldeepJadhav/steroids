@@ -145,7 +145,7 @@ class Paths
      debug: path.join @npm, "node_modules", "steroids-android-packages", "builds", "debug.apk"
 
   @endpoints:
-    envApiHost: global.argv.envApiHost ? "https://env-api.appgyver.com"
+    envApiHost: argv.envApiHost ? "https://env-api.appgyver.com"
 
   if process.env.ANDROID_HOME?
     sdk = process.env.ANDROID_HOME
