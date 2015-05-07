@@ -1,5 +1,6 @@
 path = require "path"
 pathExtra = require "path-extra"
+argv = global.argv ? {}
 
 class Paths
 
@@ -123,7 +124,7 @@ class Paths
 
   @userHome: if process.platform == 'win32' then process.env.USERPROFILE else process.env.HOME
   @storedSettings: path.join @userHome, ".appgyver"
-  @oauthTokenPath: global.argv.oauthTokenPath ? path.join @storedSettings, "token.json"
+  @oauthTokenPath: argv.oauthTokenPath ? path.join @storedSettings, "token.json"
 
   @rippleBinary: path.join @npm, "node_modules", "ripple-emulator", "bin", "ripple"
 
