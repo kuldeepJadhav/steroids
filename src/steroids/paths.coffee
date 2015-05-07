@@ -86,6 +86,8 @@ class Paths
   @application.configs =
     application: path.join @application.configDir, "application.coffee"
     cloud: path.join @application.configDir, "cloud.json"
+    env: path.join @application.configDir, "env.json"
+    module: path.join @application.configDir, "module.json"
     bower: path.join @applicationDir, "bower.json"
     configIosXml: path.join @application.wwwDir, "config.ios.xml"
     configAndroidXml: path.join @application.wwwDir, "config.android.xml"
@@ -141,6 +143,9 @@ class Paths
   @emulate:
     android:
      debug: path.join @npm, "node_modules", "steroids-android-packages", "builds", "debug.apk"
+
+  @endpoints:
+    envApiHost: argv.envApiHost ? "https://env-api.appgyver.com"
 
   if process.env.ANDROID_HOME?
     sdk = process.env.ANDROID_HOME

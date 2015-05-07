@@ -71,7 +71,7 @@ We also want to get your feedback! Drop us a mail at contact@appgyver.com
 
 To run unit tests:
 
-    $ ./bin/test release    # release testing, also creates required __testApp
+    $ ./bin/test release    # release testing, also creates required `__testApp`
     $ ./bin/test fast       # skip time consuming tests
     $ ./bin/test            # full test suite, skip setup (release)
     $ ./bin/test path/to/spec.coffee
