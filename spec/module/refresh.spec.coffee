@@ -49,6 +49,7 @@ describe "module", ->
               "--app-id=5",
               "--auth-token=456",
               "--api-key=abbacd",
+              "--user-id=789",
               "--envApiHost=https://env-api.devgyver.com"
             ]
 

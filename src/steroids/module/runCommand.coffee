@@ -32,12 +32,16 @@ commands = {
 parseArgs = (argv) ->
   opts = {
     appId: argv['app-id']
-    authToken: argv['auth-token']
     apiKey: argv['api-key']
+    userId: argv['user-id']
+    authToken: argv['auth-token']
   }
 
-  unless opts.appId? && opts.authToken? && opts.apiKey?
-    throw new Error "One of app-id, auth-token or api-key is not defined. Please run again with --api-key=abc, --auth-token=1 and --app-id=2."
+  unless opts.appId? && opts.authToken? && opts.apiKey? && opts.userId?
+    throw new Error """
+      One of app-id, api-key, user-id or auth-token is not defined.
+      Please run again with --app-id=2 --api-key=abc --user-id=123 --auth-token=1
+    """
 
   opts
 

@@ -1,3 +1,8 @@
+## 4.1.1
+
+Changes:
+- `steroids module init` requires `--user-id`
+
 ## 4.1.0 (2015-05-07)
 
 Features:

@@ -35,7 +35,7 @@ describe "module", ->
     describe "successfully", =>
       it 'runs the command which is parsed later in these tests', =>
         @session = @testHelper.runInProject
-          args: ["module", "init", "--app-id=123", "--auth-token=456", "--api-key=abbacd"]
+          args: ["module", "init", "--app-id=123", "--auth-token=456", "--api-key=abbacd", "--user-id=789"]
 
       it "writes the configuration in file", =>
         expect( fs.existsSync envConfigFilename ).toBeTruthy()
@@ -45,4 +45,5 @@ describe "module", ->
 
         expect( config.appId ).toEqual 123
         expect( config.authToken ).toEqual 456
+        expect( config.userId ).toEqual 789
         expect( config.apiKey ).toEqual "abbacd"
