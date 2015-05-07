@@ -283,7 +283,7 @@ class Steroids
             if error.message.match /Please run again with/
               console.log "Error:", error.message
             else if error.message.match /Cannot find module/
-              console.log "Error: Please run `steroids module init` first." # TODO test
+              console.log "Error: Please run `steroids module init` first."
             else
               throw error
 
