@@ -1,3 +1,11 @@
+## 4.1.0 (2015-05-07)
+
+Features:
+- `steroids module init` initializes an AppGyver Enterprise module config
+- `steroids module refresh` reloads the module environment for an AppGyver
+  Enterprise application.
+
+
 ## 4.0.15 (2015-04-01)
 
 Skip preinstall checks in non-interactive shell environments, eg. Travis-CI and Heroku.
