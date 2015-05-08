@@ -7,8 +7,8 @@ BASE_MODULE_NAME="base-module-structure"
 BASE_MODULE_REPO="git@github.com:AppGyver/${BASE_MODULE_NAME}.git"
 BASE_REMOTE_NAME="base"
 MODULE_REMOTE_NAME="origin"
-MODULE_REPO_URL="$1"
-MODULE_DIR_NAME="`basename -s .git $1`"
+MODULE_REPO_URL="$2"
+MODULE_DIR_NAME="$1"
 
 function clone_base {
   git clone "${BASE_MODULE_REPO}" "${MODULE_DIR_NAME}"
@@ -23,10 +23,10 @@ function clone_module {
   git remote add origin "${MODULE_REPO_URL}" >/dev/null
   git fetch origin
 
-  git checkout origin/master >/dev/null 2>&1
-  git branch -d master >/dev/null
+  git branch -m base_master >/dev/null
 
-  git checkout -b master origin/master >/dev/null
+  git checkout -b master
+  git push -u origin master
 }
 
 function setup_module {
