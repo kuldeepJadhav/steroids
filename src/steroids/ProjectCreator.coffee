@@ -4,6 +4,7 @@ class ProjectCreator
     @targetDirectory = options.targetDirectory
     @type = options.type || "mpa"
     @language = options.language || "coffee"
+    @repoUrl = options.repoUrl
 
   run: () ->
     new Promise (resolve) =>
@@ -50,7 +51,7 @@ class ProjectCreator
       path = require "path"
       session = sbawn
         cmd: path.join paths.scriptsDir, "createModuleProject.sh"
-        args: [@targetDirectory, @language]
+        args: [@targetDirectory, @repoUrl]
         stdout: true
         stderr: true
 

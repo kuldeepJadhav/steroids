@@ -225,7 +225,7 @@ class Steroids
 
           prompts.push typePrompt
 
-        unless argv.language
+        unless argv.language or argv.repoUrl
           languagePrompt =
             type: "list"
             name: "language"
@@ -242,6 +242,7 @@ class Steroids
         inquirer.prompt prompts, (answers) =>
           options.type = argv.type || answers.type
           options.language = argv.language || answers.language
+          options.repoUrl = argv.repoUrl
 
           ProjectCreator = require("./steroids/ProjectCreator")
           projectCreator = new ProjectCreator options
