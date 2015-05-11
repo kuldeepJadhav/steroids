@@ -23,7 +23,8 @@ commands = {
       .then(commands.refresh)
 
   refresh: ->
-    getAppId()
+    Promise.resolve(argv)
+      .then(getAppId)
       .then(retrieveEnvironment)
       .then(writeJsonStringTo paths.application.configs.module)
 }
@@ -45,11 +46,12 @@ parseArgs = (argv) ->
 
   opts
 
-getAppId = ->
-  new Promise (resolve, reject) ->
+getAppId = (argv) ->
+  if argv['app-id']
+    argv['app-id']
+  else
     config = require paths.application.configs.env
-
-    resolve config.appId
+    config.appId
 
 stringifyPrettyJson = (json) ->
   JSON.stringify(
