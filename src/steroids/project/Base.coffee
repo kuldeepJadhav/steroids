@@ -97,7 +97,7 @@ module.exports = class ProjectBase
         steroidsCli.debug "Running Grunt tasks..."
 
         grunt = new Grunt()
-        grunt.run {tasks: ["default"]}, =>
+        grunt.run {tasks: [steroidsCli.options.argv["gruntTask"] || "default"]}, =>
           unless steroidsCli.options.argv.noSettingsJson == true
             @createSettingsJson()
           @createConfigXml()

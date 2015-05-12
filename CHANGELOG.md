@@ -1,3 +1,8 @@
+## 4.1.2 (TODO)
+
+Features:
+- `steroids connect --gruntTask=<task>` lets you use a different task than the default one during project make. The custom task must be defined in the project's Gruntfile.
+
 ## 4.1.1
 
 Changes:
