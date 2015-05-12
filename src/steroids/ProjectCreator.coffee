@@ -4,7 +4,7 @@ class ProjectCreator
     @targetDirectory = options.targetDirectory
     @type = options.type || "mpa"
     @language = options.language || "coffee"
-    @repoUrl = options.repoUrl
+    @repoUrl = options.repoUrl || ""
 
   run: () ->
     new Promise (resolve) =>

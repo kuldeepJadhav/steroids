@@ -10,15 +10,13 @@ MODULE_REMOTE_NAME="origin"
 MODULE_REPO_URL="$2"
 MODULE_DIR_NAME="$1"
 
-function clone_base {
+function clone_base_module {
   git clone "${BASE_MODULE_REPO}" "${MODULE_DIR_NAME}"
   cd "${MODULE_DIR_NAME}"
   git remote rename origin "${BASE_REMOTE_NAME}" >/dev/null
 }
 
-function clone_module {
-  #echo "Will create ${MODULE_DIR_NAME}"
-
+function create_managed_project_structure {
   echo "Setting up repositories ..."
   git remote add origin "${MODULE_REPO_URL}" >/dev/null
   git fetch origin
@@ -29,7 +27,7 @@ function clone_module {
   git push -u origin master
 }
 
-function setup_module {
+function install_dependencies {
   echo "Will install dependencies, please be patient ..."
   npm install
   bower install
@@ -37,9 +35,23 @@ function setup_module {
   steroids update
 }
 
-clone_base
-clone_module
-setup_module
+function remove_git_from_project {
+  echo "Removing git setup from project "
+  rm -fr .git/
+}
+
+
+### MAIN
+
+clone_base_module
+
+if [ "${MODULE_REPO_URL}" != "" ]; then
+  create_managed_project_structure
+else
+  remove_git_from_project
+fi
+
+install_dependencies
 
 echo ""
 echo "Module Development Harness created!"

@@ -219,7 +219,7 @@ class Steroids
             choices: [
               { name: "Multi-Page Application (Supersonic default)", value: "mpa" }
               { name: "Single-Page Application (for use with other frameworks)", value: "spa"}
-              { name: "Module Development Harness (to develop custom modules)", value: "module"}
+              { name: "Module Development Harness (to develop Enterprise modules)", value: "module"}
             ]
             default: "mpa"
 
