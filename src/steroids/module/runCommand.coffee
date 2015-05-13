@@ -1,12 +1,19 @@
 fs = require 'fs'
+path = require 'path'
+chalk = require 'chalk'
 
 paths = require '../paths'
 http = require '../httpRequest'
+sbawn = require '../sbawn'
+Help = require '../Help'
 
 RuntimeConfig = require '../RuntimeConfig'
 
 module.exports = runModuleCommand = (cmd, argv) ->
   switch cmd
+    when "create"
+      commands.create(argv)
+
     when "init"
       commands.init(argv)
 
@@ -15,21 +22,62 @@ module.exports = runModuleCommand = (cmd, argv) ->
 
 
 commands = {
+  create: (argv) ->
+    Promise.resolve(argv)
+      .then(parseCreateArgs)
+      .then(createModuleProject)
+
   init: (argv) ->
     Promise.resolve(argv)
-      .then(parseArgs)
+      .then(parseInitArgs)
       .then(stringifyPrettyJson)
       .then(writeJsonStringTo paths.application.configs.env)
       .then(commands.refresh)
 
   refresh: ->
-    getAppId()
+    Promise.resolve(argv)
+      .then(getAppId)
       .then(retrieveEnvironment)
       .then(writeJsonStringTo paths.application.configs.module)
 }
 
 
-parseArgs = (argv) ->
+parseCreateArgs = (argv) ->
+  [section, command, moduleName] = argv._
+  repoUrl = argv['repo-url'] || ""
+
+  unless moduleName?
+    throw new Error """
+      Module name not defined. Please run again with the module name as an argument.
+    """
+
+  { moduleName, repoUrl }
+
+createModuleProject = ({ moduleName, repoUrl }) ->
+  steroidsCli.debug "Creating a new Appgyver Enterprise Module in #{chalk.bold fullPath}..."
+
+  fullPath = path.join process.cwd(), moduleName
+  if fs.existsSync fullPath
+    Help.error()
+    steroidsCli.log "Directory #{chalk.bold(moduleName)} already exists. Remove it to continue."
+    process.exit(1)
+
+  new Promise (resolve, reject) ->
+    session = sbawn
+      cmd: path.join paths.scriptsDir, "createModuleProject.sh"
+      args: [moduleName, repoUrl]
+      stdout: true
+      stderr: true
+
+    session.on 'exit', ->
+      if session.code != 0 || session.stdout.match(/npm ERR!/)
+        reject new Error "Something went wrong!"
+
+      resolve()
+
+
+
+parseInitArgs = (argv) ->
   opts = {
     appId: argv['app-id']
     apiKey: argv['api-key']
@@ -45,11 +93,12 @@ parseArgs = (argv) ->
 
   opts
 
-getAppId = ->
-  new Promise (resolve, reject) ->
+getAppId = (argv) ->
+  if argv['app-id']
+    argv['app-id']
+  else
     config = require paths.application.configs.env
-
-    resolve config.appId
+    config.appId
 
 stringifyPrettyJson = (json) ->
   JSON.stringify(
