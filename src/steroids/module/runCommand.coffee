@@ -42,7 +42,7 @@ commands = {
 
 parseCreateArgs = (argv) ->
   [section, command, moduleName] = argv._
-  repoUrl = argv.repoUrl || ""
+  repoUrl = argv['repo-url'] || ""
 
   unless moduleName?
     throw new Error """
