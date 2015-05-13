@@ -90,7 +90,7 @@ class Simulator
             # Split into device type and optional, '@'-separated suffix specifying the iOS version (SDK version; e.g., '5.1').
             [device, iOSVersion] = opts.device.split('@')
 
-          steroidsCli.log "Starting #{device} Simulator X3"
+          steroidsCli.log "Starting #{device} Simulator"
           deviceArg = "com.apple.CoreSimulator.SimDeviceType.#{device}"
 
           if iOSVersion?
