@@ -1,9 +1,11 @@
 fs = require 'fs'
 path = require 'path'
+chalk = require 'chalk'
 
 paths = require '../paths'
 http = require '../httpRequest'
 sbawn = require '../sbawn'
+Help = require '../Help'
 
 RuntimeConfig = require '../RuntimeConfig'
 
@@ -52,6 +54,14 @@ parseCreateArgs = (argv) ->
   { moduleName, repoUrl }
 
 createModuleProject = ({ moduleName, repoUrl }) ->
+  steroidsCli.debug "Creating a new Appgyver Enterprise Module in #{chalk.bold fullPath}..."
+
+  fullPath = path.join process.cwd(), moduleName
+  if fs.existsSync fullPath
+    Help.error()
+    steroidsCli.log "Directory #{chalk.bold(moduleName)} already exists. Remove it to continue."
+    process.exit(1)
+
   new Promise (resolve, reject) ->
     session = sbawn
       cmd: path.join paths.scriptsDir, "createModuleProject.sh"
