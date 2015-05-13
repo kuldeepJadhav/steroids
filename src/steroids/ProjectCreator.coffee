@@ -4,20 +4,16 @@ class ProjectCreator
     @targetDirectory = options.targetDirectory
     @type = options.type || "mpa"
     @language = options.language || "coffee"
-    @repoUrl = options.repoUrl || ""
 
   run: () ->
     new Promise (resolve) =>
-      if @type is "module"
-        @createModuleProject()
-      else
-        steroidsGenerator = require "generator-steroids"
-        steroidsGenerator.app {
-          skipInstall: true
-          projectName: @targetDirectory
-          appType: @type
-          scriptExt: @language
-        }, resolve
+      steroidsGenerator = require "generator-steroids"
+      steroidsGenerator.app {
+        skipInstall: true
+        projectName: @targetDirectory
+        appType: @type
+        scriptExt: @language
+      }, resolve
 
   update: =>
 
@@ -44,21 +40,5 @@ class ProjectCreator
 
         resolve()
 
-  createModuleProject: =>
-    new Promise (resolve, reject) =>
-      sbawn = require "./sbawn"
-      paths = require "./paths"
-      path = require "path"
-      session = sbawn
-        cmd: path.join paths.scriptsDir, "createModuleProject.sh"
-        args: [@targetDirectory, @repoUrl]
-        stdout: true
-        stderr: true
-
-      session.on 'exit', ->
-        if session.code != 0 || session.stdout.match(/npm ERR!/)
-          reject new Error "Something went wrong!"
-
-        resolve()
 
 module.exports = ProjectCreator

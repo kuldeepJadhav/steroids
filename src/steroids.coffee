@@ -219,13 +219,12 @@ class Steroids
             choices: [
               { name: "Multi-Page Application (Supersonic default)", value: "mpa" }
               { name: "Single-Page Application (for use with other frameworks)", value: "spa"}
-              { name: "Module Development Harness (to develop Enterprise modules)", value: "module"}
             ]
             default: "mpa"
 
           prompts.push typePrompt
 
-        unless argv.language or argv['repo-url']
+        unless argv.language
           languagePrompt =
             type: "list"
             name: "language"
@@ -242,7 +241,6 @@ class Steroids
         inquirer.prompt prompts, (answers) =>
           options.type = argv.type || answers.type
           options.language = argv.language || answers.language
-          options.repoUrl = argv['repo-url']
 
           ProjectCreator = require("./steroids/ProjectCreator")
           projectCreator = new ProjectCreator options

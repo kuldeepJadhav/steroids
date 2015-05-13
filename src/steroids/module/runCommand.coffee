@@ -1,12 +1,17 @@
 fs = require 'fs'
+path = require 'path'
 
 paths = require '../paths'
 http = require '../httpRequest'
+sbawn = require '../sbawn'
 
 RuntimeConfig = require '../RuntimeConfig'
 
 module.exports = runModuleCommand = (cmd, argv) ->
   switch cmd
+    when "create"
+      commands.create(argv)
+
     when "init"
       commands.init(argv)
 
@@ -15,9 +20,14 @@ module.exports = runModuleCommand = (cmd, argv) ->
 
 
 commands = {
+  create: (argv) ->
+    Promise.resolve(argv)
+      .then(parseCreateArgs)
+      .then(createModuleProject)
+
   init: (argv) ->
     Promise.resolve(argv)
-      .then(parseArgs)
+      .then(parseInitArgs)
       .then(stringifyPrettyJson)
       .then(writeJsonStringTo paths.application.configs.env)
       .then(commands.refresh)
@@ -30,7 +40,34 @@ commands = {
 }
 
 
-parseArgs = (argv) ->
+parseCreateArgs = (argv) ->
+  [section, command, moduleName] = argv._
+  repoUrl = argv.repoUrl || ""
+
+  unless moduleName?
+    throw new Error """
+      Module name not defined. Please run again with the module name as an argument.
+    """
+
+  { moduleName, repoUrl }
+
+createModuleProject = ({ moduleName, repoUrl }) ->
+  new Promise (resolve, reject) ->
+    session = sbawn
+      cmd: path.join paths.scriptsDir, "createModuleProject.sh"
+      args: [moduleName, repoUrl]
+      stdout: true
+      stderr: true
+
+    session.on 'exit', ->
+      if session.code != 0 || session.stdout.match(/npm ERR!/)
+        reject new Error "Something went wrong!"
+
+      resolve()
+
+
+
+parseInitArgs = (argv) ->
   opts = {
     appId: argv['app-id']
     apiKey: argv['api-key']
