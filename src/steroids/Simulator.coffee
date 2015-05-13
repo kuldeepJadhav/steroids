@@ -57,12 +57,10 @@ class Simulator
             args: ["showdevicetypes"]
 
           showDevicesSession.on "exit", =>
-            [deviceRows..., crap] = showDevicesSession.stderr.split("\n")
-
+            [deviceRows..., crap] = showDevicesSession.stdout.split("\n")
             devices = []
             for deviceRow in deviceRows
-              [crap, deviceWithSdks] = deviceRow.split("com.apple.CoreSimulator.SimDeviceType.")
-              [device, sdks] = deviceWithSdks.split(", ")
+              [device, sdks] = deviceRow.split(",")
               devices.push
                 name: device
                 sdks: sdks
@@ -92,7 +90,7 @@ class Simulator
             # Split into device type and optional, '@'-separated suffix specifying the iOS version (SDK version; e.g., '5.1').
             [device, iOSVersion] = opts.device.split('@')
 
-          steroidsCli.log "Starting #{device} Simulator"
+          steroidsCli.log "Starting #{device} Simulator X3"
           deviceArg = "com.apple.CoreSimulator.SimDeviceType.#{device}"
 
           if iOSVersion?
