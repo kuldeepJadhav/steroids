@@ -38,7 +38,7 @@ commands = {
     Promise.resolve(argv)
       .then(getAppId)
       .then(retrieveEnvironment)
-      .then(writeJsonStringTo paths.application.configs.module)
+      .then(writeJsonStringTo paths.application.configs.appgyver)
 }
 
 

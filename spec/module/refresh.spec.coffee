@@ -21,7 +21,7 @@ describe "module", ->
 
   describe "refresh", =>
     envConfigFilename = path.join(@testHelper.testAppPath, "config", "env.json")
-    moduleConfigFilename = path.join(@testHelper.testAppPath, "config", "module.json")
+    moduleConfigFilename = path.join(@testHelper.testAppPath, "config", "appgyver.json")
 
     describe "without running init first", =>
       it 'runs the command which is parsed later in these tests', =>
