@@ -1,3 +1,8 @@
+## 4.1.2 (2015-05-18)
+
+Changes:
+- Rename Steroids Enterprise configuration file `module.json` to `appgyver.json`
+
 ## 4.1.1 (2015-05-13)
 
 Features:
