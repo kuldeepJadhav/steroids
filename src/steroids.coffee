@@ -282,8 +282,10 @@ class Steroids
           .catch (error) ->
             if error.message.match /Please run again with/
               console.log "Error:", error.message
+              process.exit(-1)
             else if error.message.match /Cannot find module/
               console.log "Error: Please run `steroids module init` first."
+              process.exit(-1)
             else
               throw error
 
@@ -627,6 +629,8 @@ module.exports =
         Please send the above output to contact@appgyver.com
           (Also if possible, re-run the same command with --debug and please send that output too)
         """
+
+      process.exit(-1)
 
     d.run ->
       global.steroidsCli = new Steroids
