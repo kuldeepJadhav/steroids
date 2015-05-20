@@ -286,6 +286,9 @@ class Steroids
             else if error.message.match /Cannot find module/
               console.log "Error: Please run `steroids module init` first."
               process.exit(-1)
+            else if error.message.match /Did not recognize command/
+              console.log "Error:", error.message
+              console.log "Please see `steroids help` for available commands."
             else
               throw error
 
