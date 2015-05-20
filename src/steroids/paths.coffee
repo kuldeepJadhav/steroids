@@ -85,14 +85,12 @@ class Paths
 
   @application.configs =
     app: path.join @application.configDir, "app.coffee"
-    appgyver: path.join @application.configDir, "appgyver.json"
     appgyverSettings: path.join @application.distDir, "__appgyver_settings.json"
     application: path.join @application.configDir, "application.coffee"
     bower: path.join @applicationDir, "bower.json"
     cloud: path.join @application.configDir, "cloud.json"
     configAndroidXml: path.join @application.wwwDir, "config.android.xml"
     configIosXml: path.join @application.wwwDir, "config.ios.xml"
-    env: path.join @application.configDir, "env.json"
     packageJson: path.join @applicationDir, "package.json"
     structure: path.join @application.configDir, "structure.coffee"
     data:
@@ -100,6 +98,9 @@ class Paths
       raml: path.join @application.configDir, "cloud-resources.raml"
     legacy:
       bower: path.join @application.configDir, "bower.json"
+    module:
+      appgyver: path.join @application.configDir, "appgyver.json"
+      env: path.join @application.configDir, "env.json"
 
   @application.sources =
     controllerDir: path.join @application.appDir, "controllers"
