@@ -7,3 +7,8 @@ module.exports = class RuntimeConfig
       envApiHost = paths.endpoints.envApiHost
 
       "#{envApiHost}/api/v1/applications/#{id}/environment"
+
+    getModuleCreateUrl: ->
+      moduleApiHost = paths.endpoints.moduleApiHost
+
+      "#{moduleApiHost}/api/v1/modules"

@@ -5,6 +5,9 @@ module.exports = runModuleCommand = (cmd, argv) ->
       when "create"
         require('./create')(argv)
 
+      when "deploy"
+        require('./deploy')(argv)
+
       when "init"
         require('./init')(argv)
 

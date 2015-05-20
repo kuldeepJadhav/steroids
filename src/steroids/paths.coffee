@@ -147,6 +147,7 @@ class Paths
 
   @endpoints:
     envApiHost: argv.envApiHost ? "https://env-api.appgyver.com"
+    moduleApiHost: argv.moduleApiHost ? "https://modules-api.appgyver.com"
 
   if process.env.ANDROID_HOME?
     sdk = process.env.ANDROID_HOME

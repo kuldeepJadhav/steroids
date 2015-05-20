@@ -1,7 +1,7 @@
 TestHelper = require "../test_helper"
 
-fs = require("fs")
-path = require("path")
+fs = require "fs"
+path = require "path"
 
 describe "module", ->
 
