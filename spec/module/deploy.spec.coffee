@@ -5,15 +5,21 @@ TestHelper = require "../test_helper"
 
 skipWhen process.env.STEROIDS_TEST_RUN_MODE, "fast"
 
+file = (path) ->
+  readJson: -> JSON.parse fs.readFileSync path
+  exists: -> fs.existsSync path
+  clean: ->
+    if fs.existsSync path
+      fs.unlinkSync path
+
 describe "module", ->
 
   rightHereRightNow =>
     @testHelper = new TestHelper
     @testHelper.prepare()
 
-  deploymentDescriptionFilename = path.join(@testHelper.testAppPath, "config", "deployment.json")
-  readModuleDescription = ->
-    JSON.parse fs.readFileSync deploymentDescriptionFilename
+  deploymentDescriptionFile = file path.join(@testHelper.testAppPath, "config", "deployment.json")
+  deploymentDescriptionFile.clean()
 
   describe "deploy", =>
 
@@ -30,4 +36,8 @@ describe "module", ->
           cmd.done
 
         runs ->
-          expect(fs.existsSync deploymentDescriptionFilename).toBeTruthy()
+          expect(deploymentDescriptionFile.exists()).toBeTruthy()
+
+      describe "deployment description", ->
+        it "should have an identifier for the module", ->
+          expect(deploymentDescriptionFile.readJson().module.id).toBeTruthy()
