@@ -46,10 +46,10 @@ describe "module", ->
             args: [
               "module",
               "init",
-              "--app-id=5",
-              "--auth-token=456",
-              "--api-key=abbacd",
-              "--user-id=789",
+              "--app-id=1066",
+              "--auth-token=62e937eb1f5870ab5da0cf0dafe2d850",
+              "--api-key=60fad5ac56b50ab80bfecda1e32a8e274f3030157d680a677c9fd435c3adc2f5",
+              "--user-id=1041",
               "--envApiHost=https://env-api.devgyver.com"
             ]
 
