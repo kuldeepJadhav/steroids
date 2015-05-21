@@ -1,10 +1,10 @@
 fs = require "fs"
 path = require "path"
-
 deepEqual = require 'deep-equal'
 
 TestHelper = require "../test_helper"
 
+require('../ensure-logged-in')()
 skipWhen process.env.STEROIDS_TEST_RUN_MODE, "fast"
 
 file = (path) ->
@@ -38,7 +38,6 @@ describe "module", ->
             "module",
             "deploy",
             "--moduleApiHost=https://modules-api.devgyver.com"
-            "--accessToken=#{process.env.STEROIDS_DEVGYVER_ACCESS_TOKEN}"
           ]
 
         waitsFor ->
@@ -68,7 +67,6 @@ describe "module", ->
             "module",
             "deploy",
             "--moduleApiHost=https://modules-api.devgyver.com"
-            "--accessToken=#{process.env.STEROIDS_DEVGYVER_ACCESS_TOKEN}"
           ]
 
         waitsFor ->
@@ -95,7 +93,6 @@ describe "module", ->
               "module",
               "deploy",
               "--moduleApiHost=https://modules-api.devgyver.com"
-              "--accessToken=#{process.env.STEROIDS_DEVGYVER_ACCESS_TOKEN}"
             ]
 
           waitsFor ->

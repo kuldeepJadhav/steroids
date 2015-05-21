@@ -27,7 +27,7 @@ class Login
   @currentAccessToken: ()->
     token = @currentToken()
 
-    return token?.access_token || steroidsCli.options.argv.accessToken
+    return token?.access_token
 
   constructor: (@options={})->
     @settings =
@@ -95,6 +95,6 @@ class Login
 
     fs.writeFileSync paths.oauthTokenPath, JSON.stringify(options)
 
-    @loginPromise.resolve()
+    @loginPromise?.resolve()
 
 module.exports = Login

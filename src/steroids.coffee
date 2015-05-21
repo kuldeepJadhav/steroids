@@ -603,6 +603,11 @@ class Steroids
         usage.run()
 
 module.exports =
+  setupSteroidsGlobal: ->
+    global.steroidsCli = new Steroids
+      debug: argv.debug
+      argv: argv
+
   run: ->
     domain = require "domain"
     d = domain.create()
@@ -636,11 +641,7 @@ module.exports =
       process.exit(-1)
 
     d.run ->
-      global.steroidsCli = new Steroids
-        debug: argv.debug
-        argv: argv
-
-      steroidsCli.execute()
+      module.exports.setupSteroidsGlobal().execute()
 
   Help: Help
   paths: paths
