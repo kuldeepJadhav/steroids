@@ -11,22 +11,15 @@ writeJsonStringTo = require './writeJsonStringTo'
 
 module.exports = deployModule = (argv) ->
   readDeploymentDescription()
-    .then(
-      (deployedModule) ->
-        nextVersion = getNextModuleVersion deployedModule
-        createModuleVersion(deployedModule.id, nextVersion)
-          .then(pushToModuleVersion deployedModule.id)
-          .then ->
-            deployedModule.id
-      (error) ->
-        createModule().then (module) ->
-          createModuleVersion(module.id, 1)
-            .then(pushToModuleVersion module.id)
-            .then ->
-              module.id
-    )
-    .then(findModule)
-    .then(writeDeploymentDescription)
+    .catch((error) -> createModule())
+    .then (module) ->
+      nextVersion = getNextModuleVersion module
+      createModuleVersion(module.id, nextVersion)
+        .then(pushToModuleVersion module.id)
+        .then(->
+          findModule module.id
+        )
+        .then(writeDeploymentDescription)
 
 createModule = ->
   http.requestAuthenticated(
@@ -58,8 +51,8 @@ findModule = (moduleId) ->
   .then (data) ->
     data.module
 
-getNextModuleVersion = (deployedModule) ->
-  Number(deployedModule?.versions?[0]?.version) + 1
+getNextModuleVersion = (module) ->
+  Number(module?.versions?[0]?.version || 0) + 1
 
 pushToModuleVersion = (moduleId) -> (moduleVersion) ->
   packageModuleToDist()
