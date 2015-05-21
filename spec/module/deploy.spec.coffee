@@ -11,11 +11,14 @@ describe "module", ->
     @testHelper = new TestHelper
     @testHelper.prepare()
 
+  deploymentDescriptionFilename = path.join(@testHelper.testAppPath, "config", "deployment.json")
+  readModuleDescription = ->
+    JSON.parse fs.readFileSync deploymentDescriptionFilename
+
   describe "deploy", =>
-    moduleDescriptionFilename = path.join(@testHelper.testAppPath, "config", "module.json")
 
     describe "when running for the first time", =>
-      it "creates a file to store details about the deployed module", =>
+      it "creates a deployment description", =>
         cmd = @testHelper.runInProject
           args: [
             "module",
@@ -27,4 +30,4 @@ describe "module", ->
           cmd.done
 
         runs ->
-          expect(fs.existsSync moduleDescriptionFilename).toBeTruthy()
+          expect(fs.existsSync deploymentDescriptionFilename).toBeTruthy()
