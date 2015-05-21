@@ -19,6 +19,7 @@ getAppId = ->
 
 retrieveEnvironment = (id) ->
   http.requestAuthenticated(
-    "GET"
-    RuntimeConfig.endpoints.getEnvApiUrl(id)
+    method: "GET"
+    url: RuntimeConfig.endpoints.getEnvApiUrl(id)
+    json: true
   )

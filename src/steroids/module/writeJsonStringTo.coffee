@@ -6,7 +6,7 @@ paths = require '../paths'
 
 module.exports = writeJsonStringTo = (filepath) -> (json) ->
   ensureParentDirectoryExists filepath
-  fs.writeFileSync filepath, json
+  fs.writeFileSync filepath, prettyJsonStringify json
   wroteFile filepath
 
 ensureParentDirectoryExists = (filepath) ->
@@ -16,6 +16,13 @@ ensureParentDirectoryExists = (filepath) ->
       Unable to write to #{beautifyProjectFilepath filepath}.
       Parent directory #{beautifyProjectFilepath parentDir} does not exist.
     """
+
+prettyJsonStringify = (json) ->
+  JSON.stringify(
+    dataToEncode = json
+    recursiveWalkerThingy = null
+    indentBy = 2
+  )
 
 wroteFile = (filepath) ->
   filename = beautifyProjectFilepath filepath

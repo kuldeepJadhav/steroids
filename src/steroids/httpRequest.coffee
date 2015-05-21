@@ -13,14 +13,12 @@ run = (params) ->
         reject new Error "Failed with unknown error, HTTP status '#{res.statusCode}', url '#{res.request.uri.href}'"
     )
 
-runAuthenticated = (method, url) ->
-  run(
-    auth:
-      user: Login.currentAccessToken()
-      password: "X"
-    method: method
-    url: url
-  )
+runAuthenticated = (params = {}) ->
+  params.auth =
+    user: Login.currentAccessToken()
+    password: "X"
+
+  run params
 
 module.exports = http = {
   request: run

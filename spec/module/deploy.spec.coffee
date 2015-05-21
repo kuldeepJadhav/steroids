@@ -23,6 +23,9 @@ describe "module", ->
   deploymentDescriptionFile = file path.join(@testHelper.testAppPath, "config", "deployment.json")
   deploymentDescriptionFile.clean()
 
+  getCurrentVersion = ->
+    deploymentDescriptionFile.readJson().versions?[0]?.version
+
   describe "deploy", =>
 
     describe "when running for the first time", =>
@@ -42,7 +45,12 @@ describe "module", ->
 
       describe "deployment description", ->
         it "should have an identifier for the module", ->
-          expect(deploymentDescriptionFile.readJson().module.id).toBeTruthy()
+          expect(deploymentDescriptionFile.readJson().id).toBeTruthy()
+
+        it "should have a version identifier", ->
+          expect(getCurrentVersion()).toBeTruthy()
+
+
 
     describe "when already deployed once", =>
       it "updates the deployment description", =>
@@ -61,3 +69,24 @@ describe "module", ->
         runs ->
           freshDeploymentDescription = deploymentDescriptionFile.readJson()
           expect(deepEqual(freshDeploymentDescription, deploymentDescription)).toBeFalsy()
+
+      describe "deployment description", =>
+        it "should have an identifier for the module", =>
+          expect(deploymentDescriptionFile.readJson().id).toBeTruthy()
+
+        it "has an incremented current version", =>
+          lastVersion = getCurrentVersion()
+
+          cmd = @testHelper.runInProject
+            args: [
+              "module",
+              "deploy",
+              "--moduleApiHost=https://modules-api.devgyver.com"
+            ]
+
+          waitsFor ->
+            cmd.done
+
+          runs ->
+            expect(lastVersion).not.toEqual getCurrentVersion()
+

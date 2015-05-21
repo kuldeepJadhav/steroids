@@ -7,7 +7,6 @@ writeJsonStringTo = require './writeJsonStringTo'
 module.exports = initModule = (argv) ->
   Promise.resolve(argv)
     .then(parseInitArgs)
-    .then(stringifyPrettyJson)
     .then(writeJsonStringTo paths.application.configs.module.env)
     .then(refreshModule)
 
@@ -26,10 +25,3 @@ parseInitArgs = (argv) ->
     """
 
   opts
-
-stringifyPrettyJson = (json) ->
-  JSON.stringify(
-    dataToEncode = json
-    recursiveWalkerThingy = null
-    indentBy = 2
-  )
