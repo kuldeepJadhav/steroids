@@ -3,6 +3,7 @@ path = require 'path'
 
 paths = require '../paths'
 http = require '../httpRequest'
+log = require '../log'
 RuntimeConfig = require '../RuntimeConfig'
 PackagerBase = require '../packager/Base'
 Grunt = require '../Grunt'
@@ -10,6 +11,8 @@ Grunt = require '../Grunt'
 writeJsonStringTo = require './writeJsonStringTo'
 
 module.exports = deployModule = (argv) ->
+  console.log "About to deploy module..."
+
   readDeploymentDescription()
     .catch((error) -> createModule())
     .then (module) ->
@@ -20,6 +23,8 @@ module.exports = deployModule = (argv) ->
           findModule module.id
         )
         .then(writeDeploymentDescription)
+        .then ->
+          log.ok "Successfully deployed module"
 
 createModule = ->
   http.requestAuthenticated(
@@ -62,19 +67,28 @@ pushToModuleVersion = (moduleId) -> (moduleVersion) ->
       announceUploadCompleted moduleId, moduleVersion.id
 
 packageModuleToDist = ->
+  console.log "About to run Grunt tasks..."
+
   gruntTask = steroidsCli.options.argv["gruntTask"] || "default"
   new Grunt()
     .run(tasks: [gruntTask])
     .then ->
+      log.ok "Successfully compiled module"
+
       paths.application.distDir
 
 zipModuleDist = (distDir) ->
+  console.log "About to package module dist..."
+
   new PackagerBase({ distDir })
     .create()
     .then ->
+      log.ok "Successfully packaged module"
       paths.temporaryZip
 
 uploadWithInstructions = (uploadInstructions) -> (moduleZipPath) ->
+  console.log "About to upload module package..."
+
   http.request(
     method: "POST"
     url: uploadInstructions.__endpoint
@@ -87,7 +101,8 @@ uploadWithInstructions = (uploadInstructions) -> (moduleZipPath) ->
       success_action_status: uploadInstructions.success_action_status
       utf8: uploadInstructions.utf8
       file: fs.createReadStream moduleZipPath
-  )
+  ).then ->
+    log.ok "Successfully uploaded module package"
 
 announceUploadCompleted = (moduleId, moduleVersionId) ->
   http.requestAuthenticated(

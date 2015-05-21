@@ -1,7 +1,7 @@
 fs = require 'fs'
-chalk = require 'chalk'
 path = require 'path'
 
+log = require '../log'
 paths = require '../paths'
 
 module.exports = writeJsonStringTo = (filepath) -> (json) ->
@@ -26,7 +26,7 @@ prettyJsonStringify = (json) ->
 
 wroteFile = (filepath) ->
   filename = beautifyProjectFilepath filepath
-  console.log "#{chalk.bold.green '>'} Wrote #{filename}"
+  log.ok "Wrote #{filename}"
 
 beautifyProjectFilepath = (filepath) ->
   filepath.replace paths.applicationDir, '.'
