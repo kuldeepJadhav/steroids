@@ -1,6 +1,8 @@
 fs = require "fs"
 path = require "path"
 
+deepEqual = require 'deep-equal'
+
 TestHelper = require "../test_helper"
 
 skipWhen process.env.STEROIDS_TEST_RUN_MODE, "fast"
@@ -41,3 +43,21 @@ describe "module", ->
       describe "deployment description", ->
         it "should have an identifier for the module", ->
           expect(deploymentDescriptionFile.readJson().module.id).toBeTruthy()
+
+    describe "when already deployed once", =>
+      it "updates the deployment description", =>
+        deploymentDescription = deploymentDescriptionFile.readJson()
+
+        cmd = @testHelper.runInProject
+          args: [
+            "module",
+            "deploy",
+            "--moduleApiHost=https://modules-api.devgyver.com"
+          ]
+
+        waitsFor ->
+          cmd.done
+
+        runs ->
+          freshDeploymentDescription = deploymentDescriptionFile.readJson()
+          expect(deepEqual(freshDeploymentDescription, deploymentDescription)).toBeFalsy()

@@ -12,3 +12,8 @@ module.exports = class RuntimeConfig
       moduleApiHost = paths.endpoints.moduleApiHost
 
       "#{moduleApiHost}/api/v1/modules"
+
+    getModuleUpdateUrl: (moduleId) ->
+      moduleApiHost = paths.endpoints.moduleApiHost
+
+      "#{moduleApiHost}/api/v1/modules/#{moduleId}/versions"

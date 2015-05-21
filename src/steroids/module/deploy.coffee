@@ -8,7 +8,7 @@ writeJsonStringTo = require './writeJsonStringTo'
 module.exports = deployModule = (argv) ->
   readDeploymentDescription()
     .then(
-      (module) -> updateModule module
+      (lastDeployment) -> updateModule lastDeployment
       (error) -> createModule()
     )
     .then(writeDeploymentDescription)
@@ -19,8 +19,13 @@ createModule = ->
     RuntimeConfig.endpoints.getModuleCreateUrl()
   )
 
-updateModule = ->
-  throw new Error "Not implemented"
+updateModule = (lastDeployment) ->
+  moduleId = lastDeployment.module.id
+
+  http.requestAuthenticated(
+    "POST",
+    RuntimeConfig.endpoints.getModuleUpdateUrl(moduleId)
+  )
 
 deploymentDescriptionPath = paths.application.configs.module.deployment
 
