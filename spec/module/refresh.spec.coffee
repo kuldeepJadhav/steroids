@@ -51,6 +51,7 @@ describe "module", ->
               "--api-key=60fad5ac56b50ab80bfecda1e32a8e274f3030157d680a677c9fd435c3adc2f5",
               "--user-id=1041",
               "--envApiHost=https://env-api.devgyver.com"
+              "--accessToken=#{process.env.STEROIDS_DEVGYVER_ACCESS_TOKEN}"
             ]
 
       it "writes the module configuration in file", =>
@@ -69,6 +70,7 @@ describe "module", ->
             "module",
             "refresh"
             "--envApiHost=https://env-api.devgyver.com"
+            "--accessToken=#{process.env.STEROIDS_DEVGYVER_ACCESS_TOKEN}"
           ]
 
         runs =>

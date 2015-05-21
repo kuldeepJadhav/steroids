@@ -27,7 +27,7 @@ class Login
   @currentAccessToken: ()->
     token = @currentToken()
 
-    return token?.access_token
+    return token?.access_token || steroidsCli.options.argv.accessToken
 
   constructor: (@options={})->
     @settings =

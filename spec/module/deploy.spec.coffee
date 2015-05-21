@@ -35,6 +35,7 @@ describe "module", ->
             "module",
             "deploy",
             "--moduleApiHost=https://modules-api.devgyver.com"
+            "--accessToken=#{process.env.STEROIDS_DEVGYVER_ACCESS_TOKEN}"
           ]
 
         waitsFor ->
@@ -61,6 +62,7 @@ describe "module", ->
             "module",
             "deploy",
             "--moduleApiHost=https://modules-api.devgyver.com"
+            "--accessToken=#{process.env.STEROIDS_DEVGYVER_ACCESS_TOKEN}"
           ]
 
         waitsFor ->
@@ -82,6 +84,7 @@ describe "module", ->
               "module",
               "deploy",
               "--moduleApiHost=https://modules-api.devgyver.com"
+              "--accessToken=#{process.env.STEROIDS_DEVGYVER_ACCESS_TOKEN}"
             ]
 
           waitsFor ->
