@@ -26,6 +26,9 @@ describe "module", ->
   getCurrentVersion = ->
     deploymentDescriptionFile.readJson().versions?[0]?.version
 
+  getLastUploadTimestamp = ->
+    deploymentDescriptionFile.readJson().versions?[0]?.module_zip_last_uploaded_at
+
   describe "deploy", =>
 
     describe "when running for the first time", =>
@@ -51,7 +54,8 @@ describe "module", ->
         it "should have a version identifier", ->
           expect(getCurrentVersion()).toBeTruthy()
 
-
+        it "should have a last upload timestamp", ->
+          expect(getLastUploadTimestamp()).toBeTruthy()
 
     describe "when already deployed once", =>
       it "updates the deployment description", =>
@@ -76,8 +80,11 @@ describe "module", ->
         it "should have an identifier for the module", =>
           expect(deploymentDescriptionFile.readJson().id).toBeTruthy()
 
-        it "has an incremented current version", =>
-          lastVersion = getCurrentVersion()
+        it "has an incremented current version and last upload timestamp", =>
+          lastDeployment = {
+            version: getCurrentVersion()
+            timestamp: getLastUploadTimestamp()
+          }
 
           cmd = @testHelper.runInProject
             args: [
@@ -91,5 +98,11 @@ describe "module", ->
             cmd.done
 
           runs ->
-            expect(lastVersion).not.toEqual getCurrentVersion()
+            expect(deepEqual(
+              lastDeployment
+              {
+                version: getCurrentVersion()
+                timestamp: getLastUploadTimestamp()
+              }
+            )).toBeFalsy()
 
