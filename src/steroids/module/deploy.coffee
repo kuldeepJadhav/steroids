@@ -5,6 +5,7 @@ paths = require '../paths'
 http = require '../httpRequest'
 RuntimeConfig = require '../RuntimeConfig'
 PackagerBase = require '../packager/Base'
+Grunt = require '../Grunt'
 
 writeJsonStringTo = require './writeJsonStringTo'
 
@@ -61,10 +62,18 @@ getNextModuleVersion = (deployedModule) ->
   Number(deployedModule?.versions?[0]?.version) + 1
 
 pushToModuleVersion = (moduleId) -> (moduleVersion) ->
-  zipModuleDist(paths.application.distDir)
+  packageModuleToDist()
+    .then(zipModuleDist)
     .then(uploadWithInstructions moduleVersion.module_zip_upload_instructions)
     .then ->
       announceUploadCompleted moduleId, moduleVersion.id
+
+packageModuleToDist = ->
+  gruntTask = steroidsCli.options.argv["gruntTask"] || "default"
+  new Grunt()
+    .run(tasks: [gruntTask])
+    .then ->
+      paths.application.distDir
 
 zipModuleDist = (distDir) ->
   new PackagerBase({ distDir })

@@ -32,7 +32,7 @@ describe "module", ->
   describe "deploy", =>
 
     describe "when running for the first time", =>
-      it "creates a deployment description", =>
+      it "creates a deployment description and runs grunt", =>
         cmd = @testHelper.runInProject
           args: [
             "module",
@@ -47,6 +47,8 @@ describe "module", ->
         runs ->
           expect(deploymentDescriptionFile.exists()).toBeTruthy()
 
+          expect(cmd.stdout.match /Running "[^"]+" task/).toBeTruthy()
+
       describe "deployment description", ->
         it "should have an identifier for the module", ->
           expect(deploymentDescriptionFile.readJson().id).toBeTruthy()
@@ -58,7 +60,7 @@ describe "module", ->
           expect(getLastUploadTimestamp()).toBeTruthy()
 
     describe "when already deployed once", =>
-      it "updates the deployment description", =>
+      it "updates the deployment description and runs grunt", =>
         deploymentDescription = deploymentDescriptionFile.readJson()
 
         cmd = @testHelper.runInProject
@@ -75,6 +77,8 @@ describe "module", ->
         runs ->
           freshDeploymentDescription = deploymentDescriptionFile.readJson()
           expect(deepEqual(freshDeploymentDescription, deploymentDescription)).toBeFalsy()
+
+          expect(cmd.stdout.match /Running "[^"]+" task/).toBeTruthy()
 
       describe "deployment description", =>
         it "should have an identifier for the module", =>
