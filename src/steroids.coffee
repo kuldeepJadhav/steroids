@@ -280,14 +280,14 @@ class Steroids
 
         runModuleCommand(cmd, argv)
           .catch (error) ->
-            if error.message.match /Please run again with/
-              console.log "Error:", error.message
+            if (error.message.match /Please run again with/) or (error.message.match /endpoint requires authentication/)
+              console.log chalk.bold.red("ERROR:"), error.message
               process.exit(-1)
             else if error.message.match /Cannot find module/
-              console.log "Error: Please run `steroids module init` first."
+              console.log chalk.bold.red("ERROR:"), "Please run `steroids module init` first."
               process.exit(-1)
             else if error.message.match /Did not recognize command/
-              console.log "Error:", error.message
+              console.log chalk.bold.red("ERROR:"), error.message
               console.log "Please see `steroids help` for available commands."
             else
               throw error
