@@ -3,8 +3,8 @@ path = require "path"
 deepEqual = require 'deep-equal'
 
 TestHelper = require "../test_helper"
+oauthTokenPath = require "../devgyver_oauth_token_path"
 
-require('../ensure-logged-in')()
 skipWhen process.env.STEROIDS_TEST_RUN_MODE, "fast"
 
 file = (path) ->
@@ -38,6 +38,7 @@ describe "module", ->
             "module",
             "deploy",
             "--moduleApiHost=https://modules-api.devgyver.com"
+            "--oauthTokenPath=#{oauthTokenPath}"
           ]
 
         waitsFor ->
@@ -67,6 +68,7 @@ describe "module", ->
             "module",
             "deploy",
             "--moduleApiHost=https://modules-api.devgyver.com"
+            "--oauthTokenPath=#{oauthTokenPath}"
           ]
 
         waitsFor ->
@@ -93,6 +95,7 @@ describe "module", ->
               "module",
               "deploy",
               "--moduleApiHost=https://modules-api.devgyver.com"
+              "--oauthTokenPath=#{oauthTokenPath}"
             ]
 
           waitsFor ->
