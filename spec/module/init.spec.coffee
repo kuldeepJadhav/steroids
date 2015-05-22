@@ -1,7 +1,7 @@
 TestHelper = require "../test_helper"
 
-fs = require("fs")
-path = require("path")
+fs = require "fs"
+path = require "path"
 
 describe "module", ->
 
@@ -35,7 +35,15 @@ describe "module", ->
     describe "successfully", =>
       it 'runs the command which is parsed later in these tests', =>
         @session = @testHelper.runInProject
-          args: ["module", "init", "--app-id=123", "--auth-token=456", "--api-key=abbacd", "--user-id=789"]
+          args: [
+            "module"
+            "init"
+            "--app-id=1066"
+            "--auth-token=62e937eb1f5870ab5da0cf0dafe2d850"
+            "--api-key=60fad5ac56b50ab80bfecda1e32a8e274f3030157d680a677c9fd435c3adc2f5"
+            "--user-id=1041",
+            "--envApiHost=https://env-api.devgyver.com"
+          ]
 
       it "writes the configuration in file", =>
         expect( fs.existsSync envConfigFilename ).toBeTruthy()
@@ -43,7 +51,7 @@ describe "module", ->
       it "writes given parameters to the env file", =>
         config = require envConfigFilename
 
-        expect( config.appId ).toEqual 123
-        expect( config.authToken ).toEqual 456
-        expect( config.userId ).toEqual 789
-        expect( config.apiKey ).toEqual "abbacd"
+        expect( config.appId ).toEqual 1066
+        expect( config.authToken ).toEqual "62e937eb1f5870ab5da0cf0dafe2d850"
+        expect( config.userId ).toEqual 1041
+        expect( config.apiKey ).toEqual "60fad5ac56b50ab80bfecda1e32a8e274f3030157d680a677c9fd435c3adc2f5"

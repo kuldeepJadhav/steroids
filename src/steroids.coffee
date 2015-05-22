@@ -9,6 +9,7 @@ chalk = require "chalk"
 
 Help = require "./steroids/Help"
 paths = require "./steroids/paths"
+log = require "./steroids/log"
 
 Promise.onPossiblyUnhandledRejection (e, promise) ->
   throw e
@@ -280,12 +281,15 @@ class Steroids
 
         runModuleCommand(cmd, argv)
           .catch (error) ->
-            if error.message.match /Please run again with/
-              console.log "Error:", error.message
+            if (error.message.match /Please run again with/) or (error.message.match /endpoint requires authentication/)
+              log.error error.message
               process.exit(-1)
             else if error.message.match /Cannot find module/
-              console.log "Error: Please run `steroids module init` first."
+              log.error "Please run `steroids module init` first."
               process.exit(-1)
+            else if error.message.match /Did not recognize command/
+              log.error error.message
+              console.log "Please see `steroids help` for available commands."
             else
               throw error
 
@@ -600,6 +604,11 @@ class Steroids
         usage.run()
 
 module.exports =
+  setupSteroidsGlobal: ->
+    global.steroidsCli = new Steroids
+      debug: argv.debug
+      argv: argv
+
   run: ->
     domain = require "domain"
     d = domain.create()
@@ -633,11 +642,7 @@ module.exports =
       process.exit(-1)
 
     d.run ->
-      global.steroidsCli = new Steroids
-        debug: argv.debug
-        argv: argv
-
-      steroidsCli.execute()
+      module.exports.setupSteroidsGlobal().execute()
 
   Help: Help
   paths: paths

@@ -84,22 +84,24 @@ class Paths
     configJson: path.join @application.distDir, "config.json"
 
   @application.configs =
-    appgyver: path.join @application.configDir, "appgyver.json"
-    application: path.join @application.configDir, "application.coffee"
-    cloud: path.join @application.configDir, "cloud.json"
-    env: path.join @application.configDir, "env.json"
-    bower: path.join @applicationDir, "bower.json"
-    configIosXml: path.join @application.wwwDir, "config.ios.xml"
-    configAndroidXml: path.join @application.wwwDir, "config.android.xml"
-    packageJson: path.join @applicationDir, "package.json"
-    appgyverSettings: path.join @application.distDir, "__appgyver_settings.json"
     app: path.join @application.configDir, "app.coffee"
+    appgyverSettings: path.join @application.distDir, "__appgyver_settings.json"
+    application: path.join @application.configDir, "application.coffee"
+    bower: path.join @applicationDir, "bower.json"
+    cloud: path.join @application.configDir, "cloud.json"
+    configAndroidXml: path.join @application.wwwDir, "config.android.xml"
+    configIosXml: path.join @application.wwwDir, "config.ios.xml"
+    packageJson: path.join @applicationDir, "package.json"
     structure: path.join @application.configDir, "structure.coffee"
     data:
       sandboxdb: path.join @application.configDir, "sandboxdb.yaml"
       raml: path.join @application.configDir, "cloud-resources.raml"
     legacy:
       bower: path.join @application.configDir, "bower.json"
+    module:
+      appgyver: path.join @application.configDir, "appgyver.json"
+      env: path.join @application.configDir, "env.json"
+      deployment: path.join @application.configDir, "deployment.json"
 
   @application.sources =
     controllerDir: path.join @application.appDir, "controllers"
@@ -146,6 +148,7 @@ class Paths
 
   @endpoints:
     envApiHost: argv.envApiHost ? "https://env-api.appgyver.com"
+    moduleApiHost: argv.moduleApiHost ? "https://modules-api.appgyver.com"
 
   if process.env.ANDROID_HOME?
     sdk = process.env.ANDROID_HOME
