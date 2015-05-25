@@ -15,16 +15,16 @@ module.exports = deployModule = (argv) ->
 
   readDeploymentDescription()
     .catch((error) -> createModule())
-    .then (module) ->
-      nextVersion = getNextModuleVersion module
+    .then((module) ->
+      nextVersion = getNextModuleVersionNumber module
       createModuleVersion(module.id, nextVersion)
         .then(pushToModuleVersion module.id)
         .then(->
-          findModule module.id
+          findModule(module.id)
         )
-        .then(writeDeploymentDescription)
-        .then ->
-          log.ok "Successfully deployed module"
+    ).then (module) ->
+      writeDeploymentDescription module
+      log.ok "Successfully deployed module at: #{getDeploymentLocation(module)}"
 
 createModule = ->
   http.requestAuthenticated(
@@ -56,8 +56,14 @@ findModule = (moduleId) ->
   .then (data) ->
     data.module
 
-getNextModuleVersion = (module) ->
-  Number(module?.versions?[0]?.version || 0) + 1
+getCurrentVersion = (module) ->
+  module?.versions?[0]
+
+getDeploymentLocation = (module) ->
+  getCurrentVersion(module)?.location
+
+getNextModuleVersionNumber = (module) ->
+  Number(getCurrentVersion(module)?.version || 0) + 1
 
 pushToModuleVersion = (moduleId) -> (moduleVersion) ->
   packageModuleToDist()
