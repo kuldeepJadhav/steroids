@@ -4,6 +4,7 @@ path = require 'path'
 
 Help = require '../Help'
 sbawn = require '../sbawn'
+paths = require '../paths'
 
 module.exports = createModule = (argv) ->
   Promise.resolve(argv)
