@@ -1,3 +1,11 @@
+## 4.1.3 (2015-05-22)
+
+Features:
+- `steroids module deploy` deploys an AppGyver Enterprise module to the AppGyver Cloud
+
+Fixes:
+- Uncaught errors properly result in a non-zero exit code for the process in the terminal
+
 ## 4.1.2 (2015-05-18)
 
 Changes:
