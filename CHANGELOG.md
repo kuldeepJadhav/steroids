@@ -1,3 +1,11 @@
+## 4.1.4 (2015-05-22)
+
+Changes:
+- `steroids module deploy` announces the deployment location after success
+
+Fixes:
+- Add missing module import preventing `steroids module deploy` from running
+
 ## 4.1.3 (2015-05-22)
 
 Features:
