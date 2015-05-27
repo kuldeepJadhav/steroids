@@ -3,8 +3,9 @@ fs = require 'fs'
 path = require 'path'
 
 Help = require '../Help'
-sbawn = require '../sbawn'
 paths = require '../paths'
+
+runSbawn = require './runSbawn'
 
 module.exports = createModule = (argv) ->
   Promise.resolve(argv)
@@ -31,15 +32,9 @@ createModuleProject = ({ moduleName, repoUrl }) ->
     steroidsCli.log "Directory #{chalk.bold(moduleName)} already exists. Remove it to continue."
     process.exit(1)
 
-  new Promise (resolve, reject) ->
-    session = sbawn
-      cmd: path.join paths.scriptsDir, "createModuleProject.sh"
-      args: [moduleName, repoUrl]
-      stdout: true
-      stderr: true
-
-    session.on 'exit', ->
-      if session.code != 0 || session.stdout.match(/npm ERR!/)
-        reject new Error "Something went wrong!"
-
-      resolve()
+  runSbawn(
+    path.join paths.scriptsDir, "createModuleProject.sh"
+    [moduleName, repoUrl]
+  ).then (session) ->
+    if session.stdout.match(/npm ERR!/)
+      throw new Error "npm install could not be completed"
