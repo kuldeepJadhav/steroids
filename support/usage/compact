@@ -14,6 +14,8 @@
 
   #bold[log]        See logs
 
+  #bold[module]     Run actions related to custom module development
+
 #bold[#magenta[Available when ]connect#magenta[ is running:]] (in another process)
 
   #bold[emulate]    Starts iOS Simulator or Android Emulator (WIP)

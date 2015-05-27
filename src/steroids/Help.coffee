@@ -32,6 +32,9 @@ class Help
     log: ->
       Help.printBanner(paths.banners.usage.log, true)
 
+    module: ->
+      Help.printBanner(paths.banners.usage.module, true)
+
   @dataUsage: ->
     @printBanner(paths.banners.dataUsage, true)
 

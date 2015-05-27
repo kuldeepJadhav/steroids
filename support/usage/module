@@ -1,0 +1,26 @@
+#bold[#magenta[Synopsis:]] steroids module #bold[command] #cyan[--options]
+
+  Run actions related to custom module development
+
+#bold[#magenta[Available commands:]]
+
+  module create #bold[directory]
+
+    Create a new Module Development Harness in the target directory.
+
+#bold[#magenta[Available commands in a Module Development Harness directory:]]
+
+  module init #cyan[--options]
+
+    Connect the development environment to an AppGyver Enterprise application.
+
+    Find out more at: https://composer2.appgyver.com/modules/connect
+
+  module refresh
+
+    Refresh local information about the connected AppGyver Enterprise
+    application.
+
+  module deploy
+
+    Package a custom module and deploy it to the AppGyver Cloud.

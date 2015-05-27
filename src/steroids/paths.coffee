@@ -40,6 +40,7 @@ class Paths
       debug: path.join @bannersDir, "usage", "debug"
       log: path.join @bannersDir, "usage", "log"
       create: path.join @bannersDir, "usage", "create"
+      module: path.join @bannersDir, "usage", "module"
     ready: path.join @bannersDir, "ready"
     resetiOSSim: path.join @bannersDir, "iossim-reset"
     newVersionAvailable: path.join @bannersDir, "new-version-available"

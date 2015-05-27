@@ -15,6 +15,6 @@ module.exports = runModuleCommand = (cmd, argv) ->
         require('./refresh')(argv)
 
       else
-        throw new Error """
-          Did not recognize command: #{cmd}
-        """
+        Usage = require "../usage"
+        usage = new Usage
+        usage.module()
