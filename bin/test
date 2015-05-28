@@ -28,8 +28,9 @@ elif [ "$MODE" == "release" ]; then
   banner release --color yellow
 
   if [ "$YES" == "" ]; then
-    echo "You are not using: bin/test release y"
-    echo "why? (Y)"
+    echo "All destructive actions during the process will need to be confirmed."
+    echo "To automatically confirm everything, run: bin/test release y"
+    echo "Ready to run? (Y)"
     read
   fi
 
