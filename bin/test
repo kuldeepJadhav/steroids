@@ -118,7 +118,7 @@ ERRORS=false
 for FILE in $FILES; do
   echo "Running $FILE"
 
-  STEROIDS_TEST_RUN=true STEROIDS_TEST_RUN_MODE=$MODE STEROIDS_DEVGYVER_ACCESS_TOKEN=$STEROIDS_DEVGYVER_ACCESS_TOKEN node_modules/jasmine-node/bin/jasmine-node --verbose --coffee --color $FILE
+  STEROIDS_TEST_RUN=true STEROIDS_TEST_RUN_MODE=$MODE node_modules/jasmine-node/bin/jasmine-node --verbose --coffee --color $FILE
   if [ "$?" != 0 ]; then
     ERRORS=true
   fi
