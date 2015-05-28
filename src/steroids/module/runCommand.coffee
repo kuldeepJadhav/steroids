@@ -1,37 +1,41 @@
+log = require "../log"
 
 module.exports = runModuleCommand = (cmd, argv) ->
-  Promise.resolve().then ->
-    switch cmd
-      when "create"
-        runModuleCreate = require('./create')
+  Promise.resolve()
+    .then(->
+      switch cmd
+        when "create"
+          runModuleCreate = require('./create')
 
-        Promise.resolve(argv)
-          .then(parseCreateArgs)
-          .then(runModuleCreate)
+          Promise.resolve(argv)
+            .then(parseCreateArgs)
+            .then(runModuleCreate)
 
-      when "deploy"
-        runModuleDeploy = require('./deploy')
+        when "deploy"
+          runModuleDeploy = require('./deploy')
 
-        runModuleDeploy()
+          runModuleDeploy()
 
-      when "init"
-        runModuleInit = require('./init')
+        when "init"
+          runModuleInit = require('./init')
 
-        Promise.resolve(argv)
-          .then(parseInitArgs)
-          .then(runModuleInit)
+          Promise.resolve(argv)
+            .then(parseInitArgs)
+            .then(runModuleInit)
 
-      when "refresh"
-        runModuleRefresh = require('./refresh')
+        when "refresh"
+          runModuleRefresh = require('./refresh')
 
-        Promise.resolve(argv)
-          .then(parseRefreshArgs)
-          .then(runModuleRefresh)
+          Promise.resolve(argv)
+            .then(parseRefreshArgs)
+            .then(runModuleRefresh)
 
-      else
-        throw new Error """
-          Did not recognize command: #{cmd}
-        """
+        else
+          throw new Error """
+            Did not recognize command: #{cmd}
+          """
+    )
+    .catch(handleKnownErrorStates)
 
 parseCreateArgs = (argv) ->
   [section, command, moduleName] = argv._
@@ -49,3 +53,16 @@ parseInitArgs = (argv) ->
 
 parseRefreshArgs = (argv) ->
   argv['app-id']
+
+handleKnownErrorStates = (error) ->
+  if (error.message.match /Please run again with/) or (error.message.match /endpoint requires authentication/)
+    log.error error.message
+  else if error.message.match /Cannot find module/
+    log.error "Please run `steroids module init` first."
+  else if error.message.match /Did not recognize command/
+    log.error error.message
+    console.log "Please see `steroids help` for available commands."
+  else
+    throw error
+
+  process.exit(-1)
