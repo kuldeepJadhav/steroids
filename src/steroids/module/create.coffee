@@ -3,8 +3,9 @@ fs = require 'fs'
 path = require 'path'
 
 Help = require '../Help'
-sbawn = require '../sbawn'
 paths = require '../paths'
+
+runSbawn = require './runSbawn'
 
 module.exports = createModule = (argv) ->
   Promise.resolve(argv)
@@ -25,21 +26,30 @@ parseCreateArgs = (argv) ->
 createModuleProject = ({ moduleName, repoUrl }) ->
   steroidsCli.debug "Creating a new Appgyver Enterprise Module in #{chalk.bold fullPath}..."
 
+  fullPath = getWritableModulePath moduleName
+
+  runSbawn(
+    path.join paths.scriptsDir, "createModuleProject.sh"
+    [moduleName, repoUrl]
+  ).then (session) ->
+    if session.stdout.match(/npm ERR!/)
+      throw new Error "npm install could not be completed"
+    else
+      steroidsCli.log """
+        Module Development Harness created!
+
+        Next:
+        - cd #{moduleName}
+        - connect the harness to an application via: https://composer2.appgyver.com/modules/connect
+        - run Steroids CLI: 'cd mobile/ && steroids connect'
+      """
+
+getWritableModulePath = (moduleName) ->
   fullPath = path.join process.cwd(), moduleName
+
   if fs.existsSync fullPath
     Help.error()
     steroidsCli.log "Directory #{chalk.bold(moduleName)} already exists. Remove it to continue."
     process.exit(1)
 
-  new Promise (resolve, reject) ->
-    session = sbawn
-      cmd: path.join paths.scriptsDir, "createModuleProject.sh"
-      args: [moduleName, repoUrl]
-      stdout: true
-      stderr: true
-
-    session.on 'exit', ->
-      if session.code != 0 || session.stdout.match(/npm ERR!/)
-        reject new Error "Something went wrong!"
-
-      resolve()
+  fullPath

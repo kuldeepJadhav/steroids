@@ -36,7 +36,6 @@ function install_dependencies {
 }
 
 function remove_git_from_project {
-  echo "Removing git setup from project "
   rm -fr .git/
 }
 
@@ -53,12 +52,3 @@ fi
 
 install_dependencies
 
-echo ""
-echo "Module Development Harness created!"
-echo ""
-echo "Next: "
-echo " - go to WS Admin"
-echo " - cd ${MODULE_DIR_NAME}"
-echo " - copypaste the 'steroids module init' command in the root of module directory."
-echo " - run Steroids CLI: 'cd mobile/ && steroids connect'"
-echo ""
