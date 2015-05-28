@@ -4,7 +4,7 @@ os:
 before_install:
   - mkdir $HOME/.appgyver
   - echo $APPGYVER_ACCESS_TOKEN_CONTENTS > $HOME/.appgyver/token.json
-  - echo $DEVGYVER_ACCESS_TOKEN_CONTENTS > $HOME/.appgyver/devgyver.token.json
+  - echo $DEVGYVER_ACCESS_TOKEN_CONTENTS > $HOME/.appgyver/devgyver.richard.token.json
   - echo "before install lol"
 install:
   - ./scripts/travis/install.sh
