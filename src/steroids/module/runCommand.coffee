@@ -3,20 +3,30 @@ module.exports = runModuleCommand = (cmd, argv) ->
   Promise.resolve().then ->
     switch cmd
       when "create"
-        createModuleProject = require('./create')
+        runModuleCreate = require('./create')
 
         Promise.resolve(argv)
           .then(parseCreateArgs)
-          .then(createModuleProject)
+          .then(runModuleCreate)
 
       when "deploy"
-        require('./deploy')(argv)
+        runModuleDeploy = require('./deploy')
+
+        runModuleDeploy()
 
       when "init"
-        require('./init')(argv)
+        runModuleInit = require('./init')
+
+        Promise.resolve(argv)
+          .then(parseInitArgs)
+          .then(runModuleInit)
 
       when "refresh"
-        require('./refresh')(argv)
+        runModuleRefresh = require('./refresh')
+
+        Promise.resolve(argv)
+          .then(parseRefreshArgs)
+          .then(runModuleRefresh)
 
       else
         throw new Error """
@@ -28,3 +38,14 @@ parseCreateArgs = (argv) ->
   repoUrl = argv['repo-url']
 
   { moduleName, repoUrl }
+
+parseInitArgs = (argv) ->
+  {
+    appId: argv['app-id']
+    apiKey: argv['api-key']
+    userId: argv['user-id']
+    authToken: argv['auth-token']
+  }
+
+parseRefreshArgs = (argv) ->
+  argv['app-id']
