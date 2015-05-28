@@ -7,23 +7,13 @@ paths = require '../paths'
 
 runSbawn = require './runSbawn'
 
-module.exports = createModule = (argv) ->
-  Promise.resolve(argv)
-    .then(parseCreateArgs)
-    .then(createModuleProject)
-
-parseCreateArgs = (argv) ->
-  [section, command, moduleName] = argv._
-  repoUrl = argv['repo-url'] || ""
-
+module.exports = createModuleProject = ({ moduleName, repoUrl }) ->
   unless moduleName?
     throw new Error """
       Module name not defined. Please run again with the module name as an argument.
     """
+  repoUrl ?= ""
 
-  { moduleName, repoUrl }
-
-createModuleProject = ({ moduleName, repoUrl }) ->
   steroidsCli.debug "Creating a new Appgyver Enterprise Module in #{chalk.bold fullPath}..."
 
   fullPath = getWritableModulePath moduleName

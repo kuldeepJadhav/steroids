@@ -4,7 +4,7 @@ fs = require 'fs'
 module.exports = oauthTokenPath = path.join(
   (process.env.HOME || process.env.USERPROFILE)
   '.appgyver'
-  'devgyver.token.json'
+  'devgyver.richard.token.json'
 )
 
 if !fs.existsSync oauthTokenPath

@@ -10,7 +10,7 @@ Grunt = require '../Grunt'
 
 writeJsonStringTo = require './writeJsonStringTo'
 
-module.exports = deployModule = (argv) ->
+module.exports = deployModule = ->
   console.log "About to deploy module..."
 
   readDeploymentDescription()
