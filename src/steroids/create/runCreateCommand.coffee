@@ -6,26 +6,29 @@ chalk = require 'chalk'
 
 Help = require "../Help"
 ProjectCreator = require "./ProjectCreator"
+createModuleProject = require '../module/create'
 
 module.exports = runCreateCommand = (targetDirectory, argv) ->
 
   fullPath = getWritableTargetPath targetDirectory
   steroidsCli.debug "Creating a new project in #{chalk.bold fullPath}..."
 
-  askCreateQuestions(argv)
-    .then((answers) ->
-      runProjectCreator {
+  askCreateQuestions(argv).then (answers) ->
+    if answers.type is 'module'
+      createModuleProject {
+        moduleName: targetDirectory
+      }
+    else
+      createApplicationProject({
         targetDirectory
         type: answers.type
         language: answers.language
-      }
-    )
-    .then ->
-      steroidsCli.log """
-        #{chalk.bold.green('\nSuccesfully created a new Steroids project!')}
+      }).then ->
+        steroidsCli.log """
+          #{chalk.bold.green('\nSuccesfully created a new Steroids project!')}
 
-        Run #{chalk.bold("cd "+ targetDirectory)} and then #{chalk.bold('steroids connect')} to start building your app!
-      """
+          Run #{chalk.bold("cd "+ targetDirectory)} and then #{chalk.bold('steroids connect')} to start building your app!
+        """
 
 getWritableTargetPath = (targetDirectory) ->
   unless targetDirectory?
@@ -68,6 +71,8 @@ askCreateQuestions = (argv) ->
         { name: "JavaScript", value: "js"}
       ]
       default: "coffee"
+      when: (answers) ->
+        answers.type isnt 'module'
 
     prompts.push languagePrompt
 
@@ -78,7 +83,7 @@ askCreateQuestions = (argv) ->
 
       resolve answers
 
-runProjectCreator = (options) ->
+createApplicationProject = (options) ->
   projectCreator = new ProjectCreator options
 
   projectCreator.run().then ->

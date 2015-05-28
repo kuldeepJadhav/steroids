@@ -3,7 +3,11 @@ module.exports = runModuleCommand = (cmd, argv) ->
   Promise.resolve().then ->
     switch cmd
       when "create"
-        require('./create')(argv)
+        createModuleProject = require('./create')
+
+        Promise.resolve(argv)
+          .then(parseCreateArgs)
+          .then(createModuleProject)
 
       when "deploy"
         require('./deploy')(argv)
@@ -18,3 +22,9 @@ module.exports = runModuleCommand = (cmd, argv) ->
         throw new Error """
           Did not recognize command: #{cmd}
         """
+
+parseCreateArgs = (argv) ->
+  [section, command, moduleName] = argv._
+  repoUrl = argv['repo-url']
+
+  { moduleName, repoUrl }
