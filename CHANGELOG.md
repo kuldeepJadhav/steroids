@@ -1,3 +1,8 @@
+## 4.1.5 (2015-05-29)
+
+Fixes:
+- iOS Simulator no longer takes up 200+% CPU. Closes [#761](https://github.com/AppGyver/steroids/issues/761).
+
 ## 4.1.4 (2015-05-22)
 
 Changes:
