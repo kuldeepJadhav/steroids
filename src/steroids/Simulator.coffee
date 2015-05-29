@@ -107,7 +107,7 @@ class Simulator
               cmd: cmd
               args: args
               stdout: steroidsCli.debugEnabled?
-              stderr: true
+              stderr: steroidsCli.debugEnabled?
 
             @simulatorSession.on "exit", () =>
               @running = false
