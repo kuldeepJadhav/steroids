@@ -1,3 +1,8 @@
+## 4.1.6 (2015-06-01)
+
+Changes:
+- Improve instructions output by `steroids module` commands
+
 ## 4.1.5 (2015-05-29)
 
 Fixes:
