@@ -14,7 +14,7 @@ module.exports = createModuleProject = ({ moduleName, repoUrl }) ->
     """
   repoUrl ?= ""
 
-  steroidsCli.debug "Creating a new Appgyver Enterprise Module in #{chalk.bold fullPath}..."
+  steroidsCli.debug "Creating a new Composer 2 Module in #{chalk.bold fullPath}..."
 
   fullPath = getWritableModulePath moduleName
 
@@ -25,13 +25,19 @@ module.exports = createModuleProject = ({ moduleName, repoUrl }) ->
     if session.stdout.match(/npm ERR!/)
       throw new Error "npm install could not be completed"
     else
+      Help.SUCCESS()
       steroidsCli.log """
         Module Development Harness created!
 
-        Next:
-        - cd #{moduleName}
-        - connect the harness to an application via: https://composer2.appgyver.com/modules/connect
-        - run Steroids CLI: 'cd mobile/ && steroids connect'
+        NEXT:
+        =====
+
+        1. Run `cd #{moduleName}`
+        2. Retrieve and run a module initialization command from Composer 2:
+           https://composer2.appgyver.com/modules/connect
+        3. Run `cd mobile && steroids connect`
+
+        Good luck!
       """
 
 getWritableModulePath = (moduleName) ->

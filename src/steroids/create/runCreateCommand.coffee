@@ -55,7 +55,7 @@ askCreateQuestions = (argv) ->
       choices: [
         { name: "Multi-Page Application (Supersonic default)", value: "mpa" }
         { name: "Single-Page Application (for use with other frameworks)", value: "spa"}
-        { name: "Custom Module (for use with AppGyver Enterprise applications)", value: "module"}
+        { name: "Custom Module (for use with Composer 2)", value: "module"}
       ]
       default: "mpa"
 

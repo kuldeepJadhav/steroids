@@ -3,7 +3,7 @@ path = require 'path'
 
 paths = require '../paths'
 http = require '../httpRequest'
-log = require '../log'
+Help = require '../Help'
 RuntimeConfig = require '../RuntimeConfig'
 PackagerBase = require '../packager/Base'
 Grunt = require '../Grunt'
@@ -24,7 +24,11 @@ module.exports = deployModule = ->
         )
     ).then (module) ->
       writeDeploymentDescription module
-      log.ok "Successfully deployed module at: #{getDeploymentLocation(module)}"
+
+      Help.SUCCESS()
+      steroidsCli.log """
+        Deployed module at: #{getDeploymentLocation(module)}
+      """
 
 createModule = ->
   http.requestAuthenticated(
