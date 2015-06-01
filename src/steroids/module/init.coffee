@@ -19,3 +19,14 @@ module.exports = initModule = (options) ->
     .then(refreshModule)
     .then ->
       Help.SUCCESS()
+      steroidsCli.log """
+        Module Development Harness connected to Composer 2 application!
+
+        NEXT:
+        =====
+
+        - Start development by connecting with Steroids:
+          Run `cd mobile && steroids connect`
+        - If your Composer 2 application configuration changes:
+          Run `steroids module refresh`
+      """
