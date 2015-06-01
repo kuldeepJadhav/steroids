@@ -3,6 +3,10 @@
 Fixes:
 - iOS Simulator no longer takes up 200+% CPU. Closes [#761](https://github.com/AppGyver/steroids/issues/761).
 
+Changes:
+- Add creation of a Composer 2 module as an option in `steroids create`
+- Add usage instructions for `steroids module`
+
 ## 4.1.4 (2015-05-22)
 
 Changes:
