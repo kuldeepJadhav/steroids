@@ -28,10 +28,15 @@ module.exports = createModuleProject = ({ moduleName, repoUrl }) ->
       steroidsCli.log """
         Module Development Harness created!
 
-        Next:
-        - cd #{moduleName}
-        - connect the harness to an application via: https://composer2.appgyver.com/modules/connect
-        - run Steroids CLI: 'cd mobile/ && steroids connect'
+        NEXT:
+        =====
+
+        1. Run `cd #{moduleName}`
+        2. Retrieve and run a module initialization command from Composer 2:
+           https://composer2.appgyver.com/modules/connect
+        3. Run `cd mobile && steroids connect`
+
+        Good luck!
       """
 
 getWritableModulePath = (moduleName) ->
