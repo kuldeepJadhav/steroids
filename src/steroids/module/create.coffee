@@ -14,7 +14,7 @@ module.exports = createModuleProject = ({ moduleName, repoUrl }) ->
     """
   repoUrl ?= ""
 
-  steroidsCli.debug "Creating a new Appgyver Enterprise Module in #{chalk.bold fullPath}..."
+  steroidsCli.debug "Creating a new Composer 2 Module in #{chalk.bold fullPath}..."
 
   fullPath = getWritableModulePath moduleName
 
