@@ -25,6 +25,7 @@ module.exports = createModuleProject = ({ moduleName, repoUrl }) ->
     if session.stdout.match(/npm ERR!/)
       throw new Error "npm install could not be completed"
     else
+      Help.SUCCESS()
       steroidsCli.log """
         Module Development Harness created!
 

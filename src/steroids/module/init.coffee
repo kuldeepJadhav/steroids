@@ -1,6 +1,8 @@
 fs = require 'fs'
 
 paths = require '../paths'
+Help = require '../Help'
+
 refreshModule = require './refresh'
 writeJsonStringTo = require './writeJsonStringTo'
 
@@ -15,3 +17,5 @@ module.exports = initModule = (options) ->
   Promise.resolve(options)
     .then(writeJsonStringTo paths.application.configs.module.env)
     .then(refreshModule)
+    .then ->
+      Help.SUCCESS()
