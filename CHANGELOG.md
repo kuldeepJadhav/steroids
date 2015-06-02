@@ -1,4 +1,4 @@
-## 4.1.7 (TODO)
+## 4.1.7 (2015-06-02)
 
 Changes:
 - `steroids module deploy` accepts an optional `--deploymentJsonPath` argument
