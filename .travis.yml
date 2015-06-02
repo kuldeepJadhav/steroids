@@ -1,7 +1,7 @@
 sudo: false
 cache:
   directories:
-    - node_modules
+  - node_modules
 os:
 - osx
 - linux
@@ -25,11 +25,11 @@ env:
 - LONGCAT=looooong
 deploy:
   api_key:
-    secure: UQQ/0RIVSAcYJEVo56rc9fPSHTYi+Jhnq6V05VXdk44won8xoJs7fmOqlPn9IsiASL0ES3mE+SoKwrIWWD71qq7NpYcr7t1vi8SwBC16MFIq9Q4wosSWQ73O2ezsuhk8HcE7N3dgQT8YBQZL8oA7/ztPrSXARGfwob7veTuY0xI=
+    secure: i8T8OnO/BEEg5v3vbotEm4Le8W4RF4y2YHkeMbkxJdxEzLFe1Lfoc/FQwRBJZA9CdWICFISgGGeq9jhbB74npPA8vF+W6NWUpENDklNZi8rLNdEb9gxLXKWXzQiBwLLuhihokapUs3ngWuhaKdduFAgyIzg12ZNXVJGyvwm4hHU=
   provider: npm
   email: hostmaster+npm@appgyver.com
   on:
     tags: true
     all_branches: true
     repo: AppGyver/steroids
-    condition: "$(uname) = 'Linux'"
+    condition: $(uname) = 'Linux'
