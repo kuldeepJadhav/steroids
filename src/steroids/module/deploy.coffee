@@ -4,6 +4,7 @@ path = require 'path'
 paths = require '../paths'
 http = require '../httpRequest'
 Help = require '../Help'
+log = require "../log"
 RuntimeConfig = require '../RuntimeConfig'
 PackagerBase = require '../packager/Base'
 Grunt = require '../Grunt'
