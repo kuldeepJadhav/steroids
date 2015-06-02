@@ -32,3 +32,4 @@ deploy:
     tags: true
     all_branches: true
     repo: AppGyver/steroids
+    condition: "$(uname) = 'Linux'"
