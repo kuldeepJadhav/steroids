@@ -1,4 +1,4 @@
-AppGyver Steroids CLI
+AppGyver Steroids CLI [![NPM version](http://img.shields.io/npm/v/steroids.svg)](https://www.npmjs.org/package/steroids)
 ---------------------
 
 AppGyver Steroids 2 is PhoneGap on Steroids, providing native UI elements, multiple WebViews and enhancements for better developer productivity.
