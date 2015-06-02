@@ -1,3 +1,11 @@
+## 4.1.7 (TODO)
+
+Changes:
+- `steroids module deploy` accepts an optional `--deploymentJsonPath` argument
+
+Fixes:
+- Add missing module import preventing `steroids module deploy` from running
+
 ## 4.1.6 (2015-06-01)
 
 Changes:
