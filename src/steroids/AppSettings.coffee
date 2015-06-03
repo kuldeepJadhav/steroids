@@ -10,7 +10,6 @@ class AppSettings
     "initialView"
     "tabs"
     "rootView"
-    "extra_response_headers"
   ]
 
   constructor: ->
@@ -23,6 +22,9 @@ class AppSettings
     settingsObject = {}
     for whitelisted_keys in WHITELISTED_SETTING_KEYS
       settingsObject[whitelisted_keys] = tempSettingsObject[whitelisted_keys]
+
+    settingsObject.configuration = settingsObject.configuration || {}
+    settingsObject.configuration.extra_response_headers = tempSettingsObject.configuration?.extra_response_headers || {}
 
     JSON.stringify settingsObject, null, 2
 
