@@ -1,3 +1,8 @@
+## TODO
+
+Fixes:
+- Route paths for views match supersonic by also allowing query parameters
+
 ## 4.1.9 (2015-06-16)
 Changes:
 - Updated Android Emulator to use v4.0.5 of AppGyver Wrapper.
