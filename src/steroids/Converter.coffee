@@ -215,7 +215,10 @@ class Converter
   rootViewObject: (config)->
     @config.eitherSupersonicOrLegacy().fold(
       ->
-        config.structure.rootView
+        rootView = config.structure.rootView
+        rootView?.location =
+          routingHelpers.parseLocation(rootView.location)
+        rootView
       ->
         null
     )

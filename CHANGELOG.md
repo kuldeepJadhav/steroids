@@ -1,6 +1,7 @@
 ## TODO
 
 Fixes:
+- `rootView` in `structure.coffee` may now be a route
 - Route paths for views match supersonic by also allowing query parameters
 
 ## 4.1.9 (2015-06-16)
