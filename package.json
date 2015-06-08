@@ -83,7 +83,7 @@
     "yeoman-generator": "0.17.7",
     "q": "0.9.7",
     "chalk": "0.3.0",
-    "generator-steroids": "1.0.18",
+    "generator-steroids": "1.0.19",
     "js-yaml": "3.0.2",
     "express-json": "1.0.0",
     "winston": "0.9.0",

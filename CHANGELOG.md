@@ -1,3 +1,7 @@
+## 4.1.8 (2015-06-08)
+Changes:
+- Update geberator-steroids version to latest
+
 ## 4.1.7 (2015-06-02)
 
 Changes:
