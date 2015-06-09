@@ -1,7 +1,7 @@
 ## 4.1.9 (TODO)
 
 Fixes:
- - Add missing configuration.extra_response_headers to cloud app package. Closes [#902](https://github.com/AppGyver/steroids/issues/902).
+ - Add missing `configuration.extra_response_headers` to cloud app package. Closes [#902](https://github.com/AppGyver/steroids/issues/902).
 
 ## 4.1.8 (2015-06-08)
 Changes:
