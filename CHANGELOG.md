@@ -1,4 +1,6 @@
-## 4.1.9 (TODO)
+## 4.1.9 (2015-06-16)
+Changes:
+- Updated Android Emulator to use v4.0.5 of AppGyver Wrapper.
 
 Fixes:
  - Add missing `configuration.extra_response_headers` to cloud app package. Closes [#902](https://github.com/AppGyver/steroids/issues/902).
