@@ -256,6 +256,7 @@ class Steroids
           livereload: livereloadEnabled
           watchExclude: watchExclude
           connectScreen: showConnectScreen
+          simulate: argv.simulate || false
 
         @connect.run()
         .then =>

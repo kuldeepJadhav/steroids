@@ -3,6 +3,9 @@
 Changes:
 - Updated Android Emulator to use v4.0.6 of AppGyver Wrapper.
 
+Features:
+- `steroids connect` supports an optional `--simulate` flag to launch the iOS simulator immediately
+
 Fixes:
 - `rootView` in `structure.coffee` may now be a route
 - Route paths for views match supersonic by also allowing query parameters
