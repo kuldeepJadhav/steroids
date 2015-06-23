@@ -78,12 +78,7 @@ To run unit tests:
 
 ## Contributing
 
-<<<<<<< HEAD
-We gladly accept pull requests! However, please include only one feature or fix per one pull request.
-That way, it will be much easier to review and merge each one contribution.
-=======
 We gladly accept pull requests! However, please include only one feature or fix per one pull request. It will be much easier to review and merge each contribution.
->>>>>>> b96cbcbc2b6a7f3050271e9216ae53aa1cc73d1f
 
 To develop Steroids-npm locally:
 
