@@ -7,12 +7,14 @@
   #bold[deploy]     Deploys your application to AppGyver Cloud
 
   #bold[generate]   Runs Steroids² code generators
-  #bold[update]     Updates your dependencies (with bower)
+  #bold[update]     Updates your dependencies (with bower and NPM)
 
   #bold[login]      Logs you in to AppGyver Cloud
   #bold[logout]     Logs you out from the AppGyver Cloud
 
   #bold[log]        See logs
+
+  #bold[module]     Run actions related to custom module development
 
 #bold[#magenta[Available when ]connect#magenta[ is running:]] (in another process)
 

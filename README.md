@@ -1,9 +1,14 @@
-AppGyver Steroids CLI
+AppGyver Steroids CLI [![NPM version](http://img.shields.io/npm/v/steroids.svg)](https://www.npmjs.org/package/steroids)
 ---------------------
 
 AppGyver Steroids 2 is PhoneGap on Steroids, providing native UI elements, multiple WebViews and enhancements for better developer productivity.
 
-![Travis CI status](https://travis-ci.org/AppGyver/steroids.svg)
+## Build status
+
+
+OS X / Linux: [![Build status in Travis CI](https://travis-ci.org/AppGyver/steroids.svg)](https://travis-ci.org/AppGyver/steroids)
+
+Windows: [![Windows build status](https://ci.appveyor.com/api/projects/status/kbef0afl6cxu65qv?svg=true)](https://ci.appveyor.com/project/rdanderson/steroids)
 
 ## Requirements
 
@@ -58,23 +63,27 @@ Run with `$ steroids` command.
 
 ## Bugs, feedback
 
-Please report bugsinto this GitHub repositories issues. Please include a repro and all information about the situation in which the bug appears, including all runtimes.
+Please report bugs into this repository's [issue tracker](https://github.com/AppGyver/steroids/issues/). Please include a repro and all information about the situation in which the bug appears, including OS, Steroids and Node version number, possible AppGyver Scanner versions etc.
 
-We want to get your feedback! Drop us a mail at contact@appgyver.com
+We also want to get your feedback! Drop us a mail at contact@appgyver.com
 
 ## Testing npm
 
 To run unit tests:
 
-    $ ./bin/test release    # release testing, also creates required __testApp
+    $ ./bin/test release    # release testing, also creates required `__testApp`
     $ ./bin/test fast       # skip time consuming tests
     $ ./bin/test            # full test suite, skip setup (release)
     $ ./bin/test path/to/spec.coffee
 
 ## Contributing
 
+<<<<<<< HEAD
 We gladly accept pull requests! However, please include only one feature or fix per one pull request.
 That way, it will be much easier to review and merge each one contribution.
+=======
+We gladly accept pull requests! However, please include only one feature or fix per one pull request. It will be much easier to review and merge each contribution.
+>>>>>>> b96cbcbc2b6a7f3050271e9216ae53aa1cc73d1f
 
 To develop Steroids-npm locally:
 

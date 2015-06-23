@@ -19,3 +19,20 @@ describe 'make', ->
 
     runs ->
       expect( fs.existsSync(distPath) ).toBe(true)
+
+  it "fails gracefully with an incorrect config file", =>
+    fs = require "fs"
+    path = require "path"
+
+    configPath = path.join(@testHelper.testAppPath, "config", "app.coffee")
+    fs.appendFileSync configPath, "\n\n dolan"
+
+    session = @testHelper.runInProject
+      args: ["make"]
+
+    gracefulError = false
+    waitsFor =>
+      gracefulError = session.stderr.match /Could not parse.*\n+.*dolan is not defined/
+
+    runs ->
+      expect( gracefulError ).toBeTruthy()

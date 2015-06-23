@@ -1,5 +1,6 @@
 path = require "path"
 pathExtra = require "path-extra"
+argv = global.argv ? {}
 
 class Paths
 
@@ -39,6 +40,7 @@ class Paths
       debug: path.join @bannersDir, "usage", "debug"
       log: path.join @bannersDir, "usage", "log"
       create: path.join @bannersDir, "usage", "create"
+      module: path.join @bannersDir, "usage", "module"
     ready: path.join @bannersDir, "ready"
     resetiOSSim: path.join @bannersDir, "iossim-reset"
     newVersionAvailable: path.join @bannersDir, "new-version-available"
@@ -83,20 +85,24 @@ class Paths
     configJson: path.join @application.distDir, "config.json"
 
   @application.configs =
-    application: path.join @application.configDir, "application.coffee"
-    cloud: path.join @application.configDir, "cloud.json"
-    bower: path.join @applicationDir, "bower.json"
-    configIosXml: path.join @application.wwwDir, "config.ios.xml"
-    configAndroidXml: path.join @application.wwwDir, "config.android.xml"
-    packageJson: path.join @applicationDir, "package.json"
-    appgyverSettings: path.join @application.distDir, "__appgyver_settings.json"
     app: path.join @application.configDir, "app.coffee"
+    appgyverSettings: path.join @application.distDir, "__appgyver_settings.json"
+    application: path.join @application.configDir, "application.coffee"
+    bower: path.join @applicationDir, "bower.json"
+    cloud: path.join @application.configDir, "cloud.json"
+    configAndroidXml: path.join @application.wwwDir, "config.android.xml"
+    configIosXml: path.join @application.wwwDir, "config.ios.xml"
+    packageJson: path.join @applicationDir, "package.json"
     structure: path.join @application.configDir, "structure.coffee"
     data:
       sandboxdb: path.join @application.configDir, "sandboxdb.yaml"
       raml: path.join @application.configDir, "cloud-resources.raml"
     legacy:
       bower: path.join @application.configDir, "bower.json"
+    module:
+      appgyver: path.join @application.configDir, "appgyver.json"
+      env: path.join @application.configDir, "env.json"
+      deployment: argv.deploymentJsonPath ? path.join @application.configDir, "deployment.json"
 
   @application.sources =
     controllerDir: path.join @application.appDir, "controllers"
@@ -123,7 +129,7 @@ class Paths
 
   @userHome: if process.platform == 'win32' then process.env.USERPROFILE else process.env.HOME
   @storedSettings: path.join @userHome, ".appgyver"
-  @oauthTokenPath: path.join @storedSettings, "token.json"
+  @oauthTokenPath: argv.oauthTokenPath ? path.join @storedSettings, "token.json"
 
   @rippleBinary: path.join @npm, "node_modules", "ripple-emulator", "bin", "ripple"
 
@@ -140,6 +146,10 @@ class Paths
   @emulate:
     android:
      debug: path.join @npm, "node_modules", "steroids-android-packages", "builds", "debug.apk"
+
+  @endpoints:
+    envApiHost: argv.envApiHost ? "https://env-api.appgyver.com"
+    moduleApiHost: argv.moduleApiHost ? "https://modules-api.appgyver.com"
 
   if process.env.ANDROID_HOME?
     sdk = process.env.ANDROID_HOME

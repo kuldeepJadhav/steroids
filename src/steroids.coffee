@@ -1,5 +1,7 @@
+global.Promise = require("bluebird")
+global.argv = require('optimist').argv
+
 path = require "path"
-argv = require('optimist').argv
 util = require "util"
 open = require "open"
 fs = require "fs"
@@ -8,7 +10,6 @@ chalk = require "chalk"
 Help = require "./steroids/Help"
 paths = require "./steroids/paths"
 
-global.Promise = require("bluebird")
 Promise.onPossiblyUnhandledRejection (e, promise) ->
   throw e
 
@@ -193,67 +194,13 @@ class Steroids
         steroidsCli.version.run()
 
       when "create"
-        options =
-          targetDirectory: otherOptions[0]
+        runCreateCommand = require './steroids/create/runCreateCommand'
+        [ targetDirectory, params... ] = otherOptions
 
-        unless options.targetDirectory
-          steroidsCli.log "Usage: steroids create <directoryName>"
-          process.exit(1)
-
-        fullPath = path.join process.cwd(), options.targetDirectory
-        steroidsCli.debug "Creating a new project in #{chalk.bold fullPath}..."
-
-        if fs.existsSync fullPath
-          Help.error()
-          steroidsCli.log "Directory #{chalk.bold(options.targetDirectory)} already exists. Remove it to continue."
-          process.exit(1)
-
-        prompts = []
-
-        unless argv.type
-          typePrompt =
-            type: "list"
-            name: "type"
-            message: "Do you want to create a Multi-Page or Single-Page Application?"
-            choices: [
-              { name: "Multi-Page Application (Supersonic default)", value: "mpa" }
-              { name: "Single-Page Application (for use with other frameworks)", value: "spa"}
-            ]
-            default: "mpa"
-
-          prompts.push typePrompt
-
-        unless argv.language
-          languagePrompt =
-            type: "list"
-            name: "language"
-            message: "Do you want your project to be generated with CoffeeScript or JavaScript files?"
-            choices: [
-              { name: "CoffeeScript", value: "coffee" }
-              { name: "JavaScript", value: "js"}
-            ]
-            default: "coffee"
-
-          prompts.push languagePrompt
-
-        inquirer = require "inquirer"
-        inquirer.prompt prompts, (answers) =>
-          options.type = argv.type || answers.type
-          options.language = argv.language || answers.language
-
-          ProjectCreator = require("./steroids/ProjectCreator")
-          projectCreator = new ProjectCreator options
-
-          projectCreator.run().then ->
-            projectCreator.update().then ->
-              steroidsCli.log """
-                #{chalk.bold.green('\nSuccesfully created a new Steroids project!')}
-
-                Run #{chalk.bold("cd "+ options.targetDirectory)} and then #{chalk.bold('steroids connect')} to start building your app!
-              """
-            .catch (err) ->
-              steroidsCli.log err.message
-              process.exit 1
+        runCreateCommand(targetDirectory, argv)
+          .catch (err) ->
+            steroidsCli.log err.message
+            process.exit 1
 
       when "push"
         ProjectFactory = require "./steroids/project/ProjectFactory"
@@ -272,6 +219,12 @@ class Steroids
         packager = PackagerFactory.create()
 
         packager.create()
+
+      when "module"
+        runModuleCommand = require "./steroids/module/runCommand"
+        [ cmd, params... ] = otherOptions
+
+        runModuleCommand(cmd, argv)
 
       when "simulator"
         console.log "see: steroids emulate"
@@ -411,7 +364,7 @@ class Steroids
         console.log "see: steroids debug"
 
       when "emulate"
-        PortChecker = require "./steroids/Portchecker"
+        PortChecker = require "./steroids/PortChecker"
         connectServer = new PortChecker
           port: 4567
 
@@ -584,6 +537,11 @@ class Steroids
         usage.run()
 
 module.exports =
+  setupSteroidsGlobal: ->
+    global.steroidsCli = new Steroids
+      debug: argv.debug
+      argv: argv
+
   run: ->
     domain = require "domain"
     d = domain.create()
@@ -591,13 +549,13 @@ module.exports =
     d.on 'error', (err) ->
 
       if err.name == "PlatformError"
-        steroidsCli.log "Operating system not supported"
+        steroidsCli?.log "Operating system not supported"
       else
         console.log "Steroids Error"
 
         console.log """
         Debug Log:
-        #{steroidsCli.debugMessages?.join("\n")}
+        #{steroidsCli?.debugMessages?.join("\n")}
 
         Error with: steroids #{process.argv[2]}
 
@@ -614,12 +572,10 @@ module.exports =
           (Also if possible, re-run the same command with --debug and please send that output too)
         """
 
-    d.run ->
-      global.steroidsCli = new Steroids
-        debug: argv.debug
-        argv: argv
+      process.exit(-1)
 
-      steroidsCli.execute()
+    d.run ->
+      module.exports.setupSteroidsGlobal().execute()
 
   Help: Help
   paths: paths

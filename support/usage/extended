@@ -1,6 +1,6 @@
 #bold[#magenta[Extended usage information:]]
 
-  Disable options wiht #cyan[--no-option] e.g. #cyan[--no-connect]
+  Disable options with #cyan[--no-option] e.g. #cyan[--no-connect]
 
   #bold[connect]
 
@@ -15,6 +15,10 @@
 
     #cyan[--watchExclude <matcher>]
       Ignore files from watching. (Default: '')
+
+    #cyan[--gruntTask <task>]
+      During the make process, run a custom Grunt task instead of the default
+      one. The custom task must be specified in the project's Gruntfile.
 
   #bold[deploy]
 

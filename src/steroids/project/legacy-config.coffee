@@ -1,4 +1,5 @@
 paths = require "../paths"
+Help = require "../Help"
 
 module.exports = class LegacyConfig
 
@@ -68,6 +69,12 @@ module.exports = class LegacyConfig
     global.steroids =
       config: new LegacyConfig
 
-    require configPath
+    try
+      require configPath
+    catch error
+      Help.error()
+      console.error "Could not parse #{configPath}. Please ensure it is valid CoffeeScript. \n\n#{error}"
+      process.exit 1
+
 
     return global.steroids.config

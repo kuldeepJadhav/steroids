@@ -1,4 +1,117 @@
-## 4.0.8 (2014-01-23)
+## TODO
+
+Fixes:
+- `rootView` in `structure.coffee` may now be a route
+- Route paths for views match supersonic by also allowing query parameters
+- Adding a `--watch` argument to `steroids connect` does not prevent livereload
+
+## 4.1.9 (2015-06-16)
+Changes:
+- Updated Android Emulator to use v4.0.5 of AppGyver Wrapper.
+
+Fixes:
+ - Add missing `configuration.extra_response_headers` to cloud app package. Closes [#902](https://github.com/AppGyver/steroids/issues/902).
+
+## 4.1.8 (2015-06-08)
+Changes:
+- Update `generator-steroids` version to latest
+
+## 4.1.7 (2015-06-02)
+
+Changes:
+- `steroids module deploy` accepts an optional `--deploymentJsonPath` argument
+
+Fixes:
+- Add missing module import preventing `steroids module deploy` from running
+
+## 4.1.6 (2015-06-01)
+
+Changes:
+- Improve instructions output by `steroids module` commands
+
+## 4.1.5 (2015-05-29)
+
+Fixes:
+- iOS Simulator no longer takes up 200+% CPU. Closes [#761](https://github.com/AppGyver/steroids/issues/761).
+
+Changes:
+- Add creation of a Composer 2 module as an option in `steroids create`
+- Add usage instructions for `steroids module`
+
+## 4.1.4 (2015-05-22)
+
+Changes:
+- `steroids module deploy` announces the deployment location after success
+
+Fixes:
+- Add missing module import preventing `steroids module deploy` from running
+
+## 4.1.3 (2015-05-22)
+
+Features:
+- `steroids module deploy` deploys an AppGyver Enterprise module to the AppGyver Cloud
+
+Fixes:
+- Uncaught errors properly result in a non-zero exit code for the process in the terminal
+
+## 4.1.2 (2015-05-18)
+
+Changes:
+- Rename Steroids Enterprise configuration file `module.json` to `appgyver.json`
+
+## 4.1.1 (2015-05-13)
+
+Features:
+- `steroids connect --gruntTask=<task>` lets you use a different task than the default one during project make. The custom task must be defined in the project's Gruntfile.
+- `steroids module create` creates an AppGyver Enterprise module development harness
+
+Changes:
+- `steroids module init` requires `--user-id`
+
+## 4.1.0 (2015-05-07)
+
+Features:
+- `steroids module init` initializes an AppGyver Enterprise module config
+- `steroids module refresh` reloads the module environment for an AppGyver
+  Enterprise application.
+
+
+## 4.0.15 (2015-04-01)
+
+Skip preinstall checks in non-interactive shell environments, eg. Travis-CI and Heroku.
+
+## 4.0.14 (2015-04-01)
+
+Allow `steroids deploy` to accept a `--builder` parameter to distinguish deployments of user-built apps from deployments of apps built with AppGyver platform services.
+
+## 4.0.13 (2015-03-24)
+
+Fix a bug that prevented the `steroids emulate` command from being used on Linux.
+
+## 4.0.12 (2015-03-02)
+
+Update `request`, `winston`, `xmlbuilder` and `chokidar` dependencies to latest versions to get rid of installation warnings and errors.
+
+## 4.0.11 (2015-02-11)
+
+Fix preinstall script on Windows harder.
+
+## 4.0.10 (2015-02-11)
+
+Fix preinstall script on Windows.
+
+## 4.0.9 (2015-02-11)
+
+Bugfixes and friendlier error messages.
+
+Features:
+- If application config files are erroneous, print a friendlier error message. Closes [#80](https://github.com/appgyver/steroids/issues/80).
+
+Bugfixes:
+- Fixed a bug where the Steroids preinstall script would fail on certain Linux distros that have a `nodejs` instead of a `node` executable.
+- Fixed an issue on Mac when Lo has multiple addresses. Thanks to @mikey0000 for the PR!
+
+## 4.0.8 (2015-01-23)
 
 Changes:
 - Updated Android simulator to 4.0.4

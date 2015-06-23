@@ -1,20 +1,35 @@
+sudo: false
+cache:
+  directories:
+  - node_modules
 os:
-  - osx
-  - linux
+- osx
+- linux
 before_install:
-  - mkdir $HOME/.appgyver
-  - echo $APPGYVER_ACCESS_TOKEN_CONTENTS > $HOME/.appgyver/token.json
-  - echo "before install lol"
+- mkdir $HOME/.appgyver
+- echo $APPGYVER_ACCESS_TOKEN_CONTENTS > $HOME/.appgyver/token.json
+- echo $DEVGYVER_ACCESS_TOKEN_CONTENTS > $HOME/.appgyver/devgyver.richard.token.json
+- echo "before install lol"
 install:
-  - ./scripts/travis/install.sh
+- ./scripts/travis/install.sh
 before_script:
-  - echo "before script lol"
+- echo "before script lol"
 script:
-  - echo "script lol"
-  - STEROIDS_TEST_DEBUG=true ./bin/test release y
+- echo "script lol"
+- STEROIDS_TEST_DEBUG=true ./bin/test release y
 after_success:
-  - echo "after success lol --> $TRAVIS_TEST_RESULT"
+- echo "after success lol --> $TRAVIS_TEST_RESULT"
 after_failure:
-  - echo "after failure lol --> $TRAVIS_TEST_RESULT"
+- echo "after failure lol --> $TRAVIS_TEST_RESULT"
 env:
-  - LONGCAT=looooong
+- LONGCAT=looooong
+deploy:
+  api_key:
+    secure: i8T8OnO/BEEg5v3vbotEm4Le8W4RF4y2YHkeMbkxJdxEzLFe1Lfoc/FQwRBJZA9CdWICFISgGGeq9jhbB74npPA8vF+W6NWUpENDklNZi8rLNdEb9gxLXKWXzQiBwLLuhihokapUs3ngWuhaKdduFAgyIzg12ZNXVJGyvwm4hHU=
+  provider: npm
+  email: hostmaster+npm@appgyver.com
+  on:
+    tags: true
+    all_branches: true
+    repo: AppGyver/steroids
+    condition: $(uname) = 'Linux'

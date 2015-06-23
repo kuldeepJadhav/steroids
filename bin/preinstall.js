@@ -1,4 +1,12 @@
-#!/usr/bin/env node
+// Prevent script from running in non-interactive environments
+if (process.env.STEROIDS_TEST_RUN_ENVIRONMENT == "travis") {
+  console.log("in travis, exit with: 0");
+  process.exit(0);
+}
+if (!process.stdout.isTTY) {
+  console.log("installing steroids in a non-interactive shell, skipping preinstall checks");
+  process.exit(0);
+}
 
 var cp = require("child_process"),
     exec = cp.exec,
@@ -8,11 +16,6 @@ var cp = require("child_process"),
     sys = require("sys");
 
 var askConfirm = function() {
-  if (process.env.STEROIDS_TEST_RUN_ENVIRONMENT == "travis") {
-    console.log("in travis, exit with: 0");
-    process.exit(0);
-  }
-
   process.stdin.setRawMode( true );
   process.stdin.resume();
   process.stdin.setEncoding('utf8');

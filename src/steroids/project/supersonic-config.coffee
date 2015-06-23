@@ -1,6 +1,7 @@
 _ = require "lodash"
 paths = require "../paths"
 features = require '../features'
+Help = require '../Help'
 
 class SupersonicConfig
 
@@ -24,9 +25,19 @@ class SupersonicConfig
     delete require.cache[@structureConfigPath] if require.cache[@structureConfigPath]
 
   getCurrent: ->
-    appConfig = require @appConfigPath
+    getConfigForPath = (path) ->
+      try
+        config = require path
+      catch error
+        Help.error()
+        console.error "Could not parse #{path}. Please ensure it is valid CoffeeScript. \n\n#{error}"
+        process.exit 1
+
+      return config
+
+    appConfig = getConfigForPath @appConfigPath
     structureConfig =
-      structure: require @structureConfigPath
+      structure: getConfigForPath @structureConfigPath
 
     @currentConfig = _.merge appConfig, structureConfig
 

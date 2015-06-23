@@ -1,3 +1,8 @@
+steroidsGenerator = require "generator-steroids"
+
+paths = require '../paths'
+sbawn = require '../sbawn'
+
 class ProjectCreator
 
   constructor: (options={})->
@@ -7,7 +12,7 @@ class ProjectCreator
 
   run: () ->
     new Promise (resolve) =>
-      steroidsGenerator = require "generator-steroids"
+
       steroidsGenerator.app {
         skipInstall: true
         projectName: @targetDirectory
@@ -18,11 +23,11 @@ class ProjectCreator
   update: =>
 
     new Promise (resolve, reject) =>
-      paths = require './paths'
+
       steroids_cmd = paths.steroids
       steroidsCli.debug "Running #{steroids_cmd} update"
 
-      sbawn = require './sbawn'
+
       session = sbawn
         cmd: steroids_cmd
         args: ["update"]
@@ -39,5 +44,6 @@ class ProjectCreator
           reject new Error "\nSomething went wrong - try running #{chalk.bold('steroids update')} manually in the project directory."
 
         resolve()
+
 
 module.exports = ProjectCreator

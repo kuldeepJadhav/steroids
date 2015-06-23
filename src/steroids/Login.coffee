@@ -95,6 +95,6 @@ class Login
 
     fs.writeFileSync paths.oauthTokenPath, JSON.stringify(options)
 
-    @loginPromise.resolve()
+    @loginPromise?.resolve()
 
 module.exports = Login

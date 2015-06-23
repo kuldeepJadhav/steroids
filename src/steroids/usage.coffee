@@ -15,6 +15,7 @@ class Usage
       Help.usage.create()
       Help.usage.emulate()
       Help.usage.log()
+      Help.usage.module()
       console.log "Generator usage:"
       Help.listGenerators()
       console.log "\n"
@@ -29,5 +30,8 @@ class Usage
 
   log: ->
     Help.usage.log()
+
+  module: ->
+    Help.usage.module()
 
 module.exports = Usage
