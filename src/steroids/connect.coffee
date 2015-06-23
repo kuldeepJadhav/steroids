@@ -9,41 +9,57 @@ class Connect
     @livereload = options.livereload
     @watchExclude = options.watchExclude
     @cordova = options.cordova
+    @simulate = options.simulate
 
     @prompt = null
 
-  run: () =>
+  checkForUpdates: =>
     Updater = require "./Updater"
     updater = new Updater
     updater.check
       from: "connect"
 
-    return new Promise (resolve, reject) =>
-      Simulator = require "./Simulator"
-      simulatorForKillingIt = new Simulator
-      simulatorForKillingIt.killall()
+  killConnectedVirtualClients: =>
+    Simulator = require "./Simulator"
+    simulatorForKillingIt = new Simulator
 
-      Genymotion = require "./emulate/genymotion"
-      genymotionForKillingIt = new Genymotion
-      genymotionForKillingIt.killall()
-      .then ->
+    Genymotion = require "./emulate/genymotion"
+    genymotionForKillingIt = new Genymotion
+
+    Android = require "./emulate/android"
+    androidForKillingIt = new Android
+
+    Promise.all([
+      simulatorForKillingIt.killall().then ->
+        steroidsCli.debug "Killed simulator"
+      genymotionForKillingIt.killall().then ->
         steroidsCli.debug "Killed genymotion"
-
-      Android = require "./emulate/android"
-      androidForKillingIt = new Android
-      androidForKillingIt.killall()
-      .then ->
+      androidForKillingIt.killall().then ->
         steroidsCli.debug "Killed android"
+    ])
+
+  run: () =>
+    Promise.resolve().then =>
+      @checkForUpdates()
+      virtualClientsReady = @killConnectedVirtualClients()
 
       ProjectFactory = require "./project/ProjectFactory"
       @project = ProjectFactory.create()
 
       @project.push().then =>
-        @startServer()
-      .then =>
-        resolve()
-      .catch (error) =>
-        reject error
+        @startServer().then =>
+          if @simulate
+            virtualClientsReady.then =>
+              Simulator = require "./Simulator"
+              simulator = new Simulator()
+
+              if typeof @simulate is 'string'
+                simulator.run(
+                  device: @simulate
+                )
+              else
+                simulator.run()
+
 
   startServer: ()=>
     return new Promise (resolve, reject) =>
@@ -207,7 +223,6 @@ class Connect
             ignored: @watchExclude
 
           watcher.on ["add", "change", "unlink"], (path)=>
-            canBeLiveReload = false
             shouldMake = true
 
       resolve()
