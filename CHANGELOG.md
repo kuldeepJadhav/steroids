@@ -1,3 +1,4 @@
+
 ## 4.1.10 (2015-06-23)
 
 Changes:
@@ -10,6 +11,7 @@ Fixes:
 - `rootView` in `structure.coffee` may now be a route
 - Route paths for views match supersonic by also allowing query parameters
 - Adding a `--watch` argument to `steroids connect` does not prevent livereload
+- Add missing configuration.extra_response_headers to cloud app package. Closes [#902](https://github.com/AppGyver/steroids/issues/902).
 
 ## 4.1.9 (2015-06-16)
 Changes:
@@ -21,6 +23,7 @@ Fixes:
 ## 4.1.8 (2015-06-08)
 Changes:
 - Update `generator-steroids` version to latest
+
 
 ## 4.1.7 (2015-06-02)
 
