@@ -1,4 +1,7 @@
-## TODO
+## 4.1.10 (2015-06-23)
+
+Changes:
+- Updated Android Emulator to use v4.0.6 of AppGyver Wrapper.
 
 Fixes:
 - `rootView` in `structure.coffee` may now be a route
