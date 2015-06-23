@@ -3,6 +3,7 @@
 Fixes:
 - `rootView` in `structure.coffee` may now be a route
 - Route paths for views match supersonic by also allowing query parameters
+- Adding a `--watch` argument to `steroids connect` does not prevent livereload
 
 ## 4.1.9 (2015-06-16)
 Changes:

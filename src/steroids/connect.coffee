@@ -207,7 +207,6 @@ class Connect
             ignored: @watchExclude
 
           watcher.on ["add", "change", "unlink"], (path)=>
-            canBeLiveReload = false
             shouldMake = true
 
       resolve()
