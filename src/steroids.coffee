@@ -155,7 +155,7 @@ class Steroids
       Help.logo() unless argv.noLogo
 
     Login = require("./steroids/Login")
-    if firstOption in ["connect", "deploy", "simulator", "logout"]
+    if firstOption in ["connect", "deploy"]
       unless Login.authTokenExists()
         console.log """
 
@@ -341,10 +341,17 @@ class Steroids
           process.exit(0)
 
       when "logout"
+        Login = require "./steroids/Login"
+
+        Help.logo()
+
+        if !Login.authTokenExists()
+          util.log "Already logged out."
+          return
+
         Logout = require "./steroids/logout"
         logout = new Logout
         logout.run().then () ->
-          Help.logo()
           Help.loggedOut()
 
       when "deploy"
