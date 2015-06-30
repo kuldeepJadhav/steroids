@@ -237,11 +237,11 @@ steroidsVersion = packageJSON.version;
 
 console.log("\n\n\nAppGyver Steroids² "+steroidsVersion+" installation\n");
 
-console.log("If you have any problems, please visit our forums at http://forums.appgyver.com\n\
+console.log("If you have any problems, please visit our forums at http://community.appgyver.com\n\
 We are now trying to detect required dependencies and problems.\n\
 Some dependencies (like dtrace-provider) will print ugly warnings to the screen, but everything should be fine.\n \
 \n \
- - The AppGyver team (contact@appgyver.com)\n \
+ - The AppGyver team\n \
 \n \
 \nStarting installation in ...");
 

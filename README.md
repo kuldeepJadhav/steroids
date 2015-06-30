@@ -57,9 +57,9 @@ Run with `$ steroids` command.
 * [Using Steroids CLI](http://docs.appgyver.com/steroids/cli/steroids-cli/local-development-flow/)
 * [Get started with Supersonic](http://docs.appgyver.com/supersonic/tutorial/first-mile/#overview)
 
-## Forums
+## Community
 
-[http://forums.appgyver.com](http://forums.appgyver.com)
+[http://community.appgyver.com](http://community.appgyver.com)
 
 ## Bugs, feedback
 
