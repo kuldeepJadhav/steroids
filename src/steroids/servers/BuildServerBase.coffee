@@ -100,10 +100,6 @@ module.exports = class BuildServerBase extends Server
           f(req, res).catch (err) ->
             res.status(500).json {error: "Internal error"}
 
-
-    @app.get "/", (req, res) =>
-      res.redirect("/__appgyver/index.html")
-
     @app.get "/appgyver/api/applications/1.json", (req, res) =>
 
       config = @converter.configToAnkaFormat()
