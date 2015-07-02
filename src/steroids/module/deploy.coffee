@@ -99,19 +99,25 @@ zipModuleDist = (distDir) ->
 
 uploadWithInstructions = (uploadInstructions) -> (moduleZipPath) ->
   console.log "About to upload module package..."
+  data =
+    key: uploadInstructions.key
+    AWSAccessKeyId: uploadInstructions.AWSAccessKeyId
+    acl: uploadInstructions.acl
+    policy: uploadInstructions.policy
+    signature: uploadInstructions.signature
+    success_action_status: uploadInstructions.success_action_status
+    utf8: uploadInstructions.utf8
+
+  if uploadInstructions.metadata?
+    for key, value of uploadInstructions.metadata
+      data[key] = value
+
+  data.file = fs.createReadStream moduleZipPath
 
   http.request(
     method: "POST"
     url: uploadInstructions.__endpoint
-    formData:
-      key: uploadInstructions.key
-      AWSAccessKeyId: uploadInstructions.AWSAccessKeyId
-      acl: uploadInstructions.acl
-      policy: uploadInstructions.policy
-      signature: uploadInstructions.signature
-      success_action_status: uploadInstructions.success_action_status
-      utf8: uploadInstructions.utf8
-      file: fs.createReadStream moduleZipPath
+    formData: data
   ).then ->
     log.ok "Successfully uploaded module package"
 
