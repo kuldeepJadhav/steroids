@@ -153,24 +153,6 @@ var checkNPMWriteable = function(done) {
 
 var checkComponents = function() {
 
-  process.stdout.write("Checking for compatibility with Node.js version " + process.version + " ...");
-
-  if(/^v0\.10/.test(process.version)) {
-    console.log(" OK\n");
-  } else {
-    console.log("");
-    var errorBanner = fs.readFileSync(path.join(__dirname, "..", "support", "error-nocolors")).toString();
-    console.log(errorBanner);
-
-    console.log("\nIn version 3.5.11, Steroids was updated to work on Node.js version 0.10.x only. You are currently using Node.js " + process.version + ".");
-    console.log("\nIf you have NVM installed, you can use the '$ nvm install 0.10' command to install Node.js 0.10.x, and '$ nvm alias default 0.10' to make it your default Node.js version.");
-    console.log("\nSee the installation instructions at https://academy.appgyver.com/installwizard for more information.");
-    console.log("\nNOTE: After you have updated your Node.js version (check with '$ node -v'), you need to write '$ npm install steroids -g' (instead of 'npm update') to update Steroids npm.")
-    console.log("\n\nDo you really want to ignore these words of wisdom and continue anyway? (y/N)");
-    askConfirm();
-    return;
-  }
-
   console.log("Checking for required components ...\n");
 
   if (process.platform === "win32") {
