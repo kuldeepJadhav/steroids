@@ -1,3 +1,8 @@
+## 4.1.11 (TODO)
+
+Features:
+- Updated `steroids-connect` dependency to v1.0.34, with updates to the data browser.
+
 
 ## 4.1.10 (2015-06-23)
 
