@@ -1,4 +1,4 @@
-## 4.1.11 (TODO)
+## 4.1.11 (2015-07-16)
 
 Features:
 - Updated `steroids-connect` dependency to v1.0.34, with updates to the data browser.
@@ -6,6 +6,8 @@ Features:
 Changes:
 - Remove Node.js version check from preinstall script.
 
+Bugfixes:
+- Trying to log out without a session gives a proper error message.
 
 ## 4.1.10 (2015-06-23)
 
@@ -17,7 +19,7 @@ Features:
 
 Fixes:
 - `rootView` in `structure.coffee` may now be a route
-- Route paths for views match supersonic by also allowing query parameters
+- Route paths for views match Supersonic by also allowing query parameters
 - Adding a `--watch` argument to `steroids connect` does not prevent livereload
 - Add missing configuration.extra_response_headers to cloud app package. Closes [#902](https://github.com/AppGyver/steroids/issues/902).
 
