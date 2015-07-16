@@ -3,6 +3,9 @@
 Features:
 - Updated `steroids-connect` dependency to v1.0.34, with updates to the data browser.
 
+Changes:
+- Remove Node.js version check from preinstall script.
+
 
 ## 4.1.10 (2015-06-23)
 
