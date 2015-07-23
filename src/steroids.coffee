@@ -115,7 +115,7 @@ class Steroids
     else
       ""
 
-    util.print "#{prefix}#{tag}#{message}#{suffix}"
+    console.log "#{prefix}#{tag}#{message}#{suffix}"
 
     if refresh and @connect?.prompt?
       @connect?.prompt?.refresh()
