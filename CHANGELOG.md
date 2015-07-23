@@ -1,3 +1,8 @@
+## 4.1.12 (2015-07-23)
+
+Changes:
+- Speed up install by fetching Steroids binary assets (e.g. bundled simulators) via CloudFront instead of directly from S3.
+
 ## 4.1.11 (2015-07-16)
 
 Features:
