@@ -54,10 +54,15 @@ parseInitArgs = (argv) ->
 parseRefreshArgs = (argv) ->
   argv['app-id']
 
+parseInstallArgs = (argv) ->
+  [section, command, moduleName] = argv._
+
+  { moduleName }
+
 handleKnownErrorStates = (error) ->
   if (error.message.match /Please run again with/) or (error.message.match /endpoint requires authentication/)
     log.error error.message
-  else if error.message.match /Cannot find module/
+  else if error.message.match /Could not parse JSON configuration/
     log.error "Please run `steroids module init` first."
   else if error.message.match /Did not recognize command/
     log.error error.message

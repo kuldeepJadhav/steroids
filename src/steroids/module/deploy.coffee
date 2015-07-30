@@ -10,6 +10,7 @@ PackagerBase = require '../packager/Base'
 Grunt = require '../Grunt'
 
 writeJsonStringTo = require './writeJsonStringTo'
+readJsonConfigFrom = require './readJsonConfigFrom'
 
 module.exports = deployModule = ->
   console.log "About to deploy module..."
@@ -135,7 +136,7 @@ deploymentDescriptionPath = paths.application.configs.module.deployment
 
 readDeploymentDescription = ->
   new Promise (resolve) ->
-    resolve JSON.parse fs.readFileSync deploymentDescriptionPath
+    resolve readJsonConfigFrom deploymentDescriptionPath
 
 writeDeploymentDescription = writeJsonStringTo deploymentDescriptionPath
 
