@@ -5,12 +5,12 @@ paths = require '../paths'
 http = require '../httpRequest'
 Help = require '../Help'
 log = require "../log"
-RuntimeConfig = require '../RuntimeConfig'
 PackagerBase = require '../packager/Base'
 Grunt = require '../Grunt'
 
 writeJsonStringTo = require './writeJsonStringTo'
 readJsonConfigFrom = require './readJsonConfigFrom'
+urls = require './urls'
 
 module.exports = deployModule = ->
   console.log "About to deploy module..."
@@ -35,7 +35,7 @@ module.exports = deployModule = ->
 createModule = ->
   http.requestAuthenticated(
     method: "POST"
-    url: getModuleCreateUrl()
+    url: urls.module.create()
     json: true
   )
   .then (data) ->
@@ -44,7 +44,7 @@ createModule = ->
 createModuleVersion = (moduleId, versionIdentifier) ->
   http.requestAuthenticated(
     method: "POST"
-    url: getModuleVersionCreateUrl(moduleId)
+    url: urls.module.version.create(moduleId)
     json: true
     body:
       version:
@@ -56,7 +56,7 @@ createModuleVersion = (moduleId, versionIdentifier) ->
 findModule = (moduleId) ->
   http.requestAuthenticated(
     method: "GET"
-    url: getModuleUrl(moduleId)
+    url: urls.module.find(moduleId)
     json: true
   )
   .then (data) ->
@@ -125,7 +125,7 @@ uploadWithInstructions = (uploadInstructions) -> (moduleZipPath) ->
 announceUploadCompleted = (moduleId, moduleVersionId) ->
   http.requestAuthenticated(
     method: "PUT"
-    url: getModuleVersionUpdateUrl(moduleId, moduleVersionId)
+    url: urls.module.version.update(moduleId, moduleVersionId)
     json: true
     body:
       version:
@@ -139,15 +139,3 @@ readDeploymentDescription = ->
     resolve readJsonConfigFrom deploymentDescriptionPath
 
 writeDeploymentDescription = writeJsonStringTo deploymentDescriptionPath
-
-
-getModuleCreateUrl = RuntimeConfig.endpoints.getModuleApiUrl
-
-getModuleVersionCreateUrl = (moduleId) ->
-  "#{RuntimeConfig.endpoints.getModuleApiUrl()}/#{moduleId}/versions"
-
-getModuleUrl = (moduleId) ->
-  "#{RuntimeConfig.endpoints.getModuleApiUrl()}/#{moduleId}"
-
-getModuleVersionUpdateUrl = (moduleId, moduleVersionId) ->
-  "#{RuntimeConfig.endpoints.getModuleApiUrl()}/#{moduleId}/versions/#{moduleVersionId}"
