@@ -29,7 +29,7 @@ describe "module", ->
       it "fails with human readable error", =>
         done = false
         waitsFor =>
-          done = @failedSession.stdout.match "Please run again with"
+          done = @failedSession.stderr.match "Please run again with"
         runs =>
           expect(done).toBeTruthy()
 

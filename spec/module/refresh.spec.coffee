@@ -34,7 +34,7 @@ describe "module", ->
       it "fails with human readable error", =>
         done = false
         waitsFor =>
-          done = @failedSession.stdout.match "Please run `steroids module init` first."
+          done = @failedSession.stderr.match "Please run `steroids module init` first."
         runs =>
           expect(done).toBeTruthy
 
