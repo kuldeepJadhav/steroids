@@ -1,16 +1,16 @@
 fs = require 'fs'
 path = require 'path'
 
-paths = require '../paths'
-http = require '../httpRequest'
-Help = require '../Help'
-log = require "../log"
-PackagerBase = require '../packager/Base'
-Grunt = require '../Grunt'
+paths = require '../../paths'
+http = require '../../httpRequest'
+Help = require '../../Help'
+log = require "../../log"
+PackagerBase = require '../../packager/Base'
+Grunt = require '../../Grunt'
 
-writeJsonStringTo = require './writeJsonStringTo'
-readJsonConfigFrom = require './readJsonConfigFrom'
-urls = require './urls'
+writeJsonStringTo = require '../writeJsonStringTo'
+readJsonConfigFrom = require '../readJsonConfigFrom'
+urls = require '../urls'
 
 module.exports = deployModule = ->
   console.log "About to deploy module..."

@@ -5,33 +5,33 @@ module.exports = runModuleCommand = (cmd, argv) ->
     .then(->
       switch cmd
         when "create"
-          runModuleCreate = require('./create')
+          runModuleCreate = require('./commands/create')
 
           Promise.resolve(argv)
             .then(parseCreateArgs)
             .then(runModuleCreate)
 
         when "deploy"
-          runModuleDeploy = require('./deploy')
+          runModuleDeploy = require('./commands/deploy')
 
           runModuleDeploy()
 
         when "init"
-          runModuleInit = require('./init')
+          runModuleInit = require('./commands/init')
 
           Promise.resolve(argv)
             .then(parseInitArgs)
             .then(runModuleInit)
 
         when "refresh"
-          runModuleRefresh = require('./refresh')
+          runModuleRefresh = require('./commands/refresh')
 
           Promise.resolve(argv)
             .then(parseRefreshArgs)
             .then(runModuleRefresh)
 
         when "install"
-          runModuleInstall = require('./install')
+          runModuleInstall = require('./commands/install')
 
           Promise.resolve(argv)
             .then(parseInstallArgs)

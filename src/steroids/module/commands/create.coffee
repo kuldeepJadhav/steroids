@@ -2,10 +2,10 @@ chalk = require 'chalk'
 fs = require 'fs'
 path = require 'path'
 
-Help = require '../Help'
-paths = require '../paths'
+Help = require '../../Help'
+paths = require '../../paths'
 
-runSbawn = require './runSbawn'
+runSbawn = require '../runSbawn'
 
 module.exports = createModuleProject = ({ moduleName, repoUrl }) ->
   unless moduleName?

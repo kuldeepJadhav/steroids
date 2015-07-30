@@ -1,8 +1,9 @@
-paths = require '../paths'
-http = require '../httpRequest'
-RuntimeConfig = require '../RuntimeConfig'
-writeJsonStringTo = require './writeJsonStringTo'
-readJsonConfigFrom = require './readJsonConfigFrom'
+paths = require '../../paths'
+http = require '../../httpRequest'
+RuntimeConfig = require '../../RuntimeConfig'
+
+writeJsonStringTo = require '../writeJsonStringTo'
+readJsonConfigFrom = require '../readJsonConfigFrom'
 
 module.exports = refreshModule = (appId = null) ->
   appId ?= readAppId()

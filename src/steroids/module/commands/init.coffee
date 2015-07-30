@@ -1,10 +1,11 @@
 fs = require 'fs'
 
-paths = require '../paths'
-Help = require '../Help'
+paths = require '../../paths'
+Help = require '../../Help'
+
+writeJsonStringTo = require '../writeJsonStringTo'
 
 refreshModule = require './refresh'
-writeJsonStringTo = require './writeJsonStringTo'
 
 module.exports = initModule = (options) ->
 

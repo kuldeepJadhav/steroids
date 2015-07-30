@@ -6,7 +6,7 @@ chalk = require 'chalk'
 
 Help = require "../Help"
 ProjectCreator = require "./ProjectCreator"
-createModuleProject = require '../module/create'
+createModuleProject = require '../module/commands/create'
 
 module.exports = runCreateCommand = (targetDirectory, argv) ->
 
