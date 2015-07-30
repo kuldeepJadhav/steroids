@@ -24,3 +24,10 @@
   module deploy
 
     Package a custom module and deploy it to the AppGyver Cloud.
+
+  module install <name>
+
+    Install an external Composer Module in your development environment to be
+    able to link to it through Supersonic.
+
+    Find installable Modules at: https://composer2.appgyver.com/web_components
