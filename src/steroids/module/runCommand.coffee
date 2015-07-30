@@ -30,6 +30,13 @@ module.exports = runModuleCommand = (cmd, argv) ->
             .then(parseRefreshArgs)
             .then(runModuleRefresh)
 
+        when "install"
+          runModuleInstall = require('./install')
+
+          Promise.resolve(argv)
+            .then(parseInstallArgs)
+            .then(runModuleInstall)
+
         else
           Usage = require "../usage"
           usage = new Usage

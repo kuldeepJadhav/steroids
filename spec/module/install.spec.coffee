@@ -10,7 +10,12 @@ describe "module", ->
       steroids.module.help().check ({stdout}) ->
         stdout.should.match /module install/
 
-    it "runs successfully", ->
-      steroids.module.install("com.appgyver.comments").check ({code, stdout}) ->
-        code.should.equal 0
-        stdout.should.match /Installing/
+    it "fails without a module name argument", ->
+      steroids.module.install().check ({stdout}) ->
+        stdout.should.match /name required/
+
+    describe "with a valid module name as target", ->
+      xit "runs successfully", ->
+        steroids.module.install("com.appgyver.comments").check ({code, stdout}) ->
+          code.should.equal 0
+          stdout.should.match /Installing/
