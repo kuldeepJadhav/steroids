@@ -1,9 +1,15 @@
 fs = require 'fs'
+path = require 'path'
+
+Download = require 'download'
+Promise = require 'bluebird'
 
 log = require "../../log"
 paths = require "../../paths"
 
 moduleApi = require '../moduleApi'
+
+MODULE_DIR = paths.application.composerModulesDir
 
 module.exports = installModule = (args) ->
   unless args.moduleName
@@ -19,15 +25,34 @@ module.exports = installModule = (args) ->
         Module '#{args.moduleName}' is not published in the repository.
       """
     )
-    .then (module) ->
-      [ latestVersion ] = module.versions
-
-      moduleZipUrl = latestVersion.source
-
+    .tap (module) ->
       console.log "About to install #{module.namespace}..."
+    .then(getLatestVersionZipUrl)
+    .then(installModule getModuleInstallationTargetDir args.moduleName)
+    .then ->
+      log.ok "Module installation complete."
 
-      ensureModuleDirectoryExists()
+getLatestVersionZipUrl = (module) ->
+  [ latestVersion ] = module.versions
+
+  moduleZipUrl = latestVersion.source
+
+  moduleZipUrl
+
+installModule = (destination) -> (moduleZipUrl) ->
+  new Promise (resolve, reject) ->
+    ensureModuleDirectoryExists()
+
+    new Download(extract: true)
+      .get(moduleZipUrl)
+      .dest(destination)
+      .run (err, files) ->
+        return reject err if err?
+        resolve files
 
 ensureModuleDirectoryExists = ->
-  if !fs.existsSync paths.application.composerModulesDir
-    fs.mkdirSync paths.application.composerModulesDir
+  if !fs.existsSync MODULE_DIR
+    fs.mkdirSync MODULE_DIR
+
+getModuleInstallationTargetDir = (moduleName) ->
+  path.join MODULE_DIR, moduleName
