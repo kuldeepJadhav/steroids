@@ -1,3 +1,8 @@
+fs = require 'fs'
+
+log = require "../../log"
+paths = require "../../paths"
+
 moduleApi = require '../moduleApi'
 
 module.exports = installModule = (args) ->
@@ -14,3 +19,15 @@ module.exports = installModule = (args) ->
         Module '#{args.moduleName}' is not published in the repository.
       """
     )
+    .then (module) ->
+      [ latestVersion ] = module.versions
+
+      moduleZipUrl = latestVersion.source
+
+      console.log "About to install #{module.namespace}..."
+
+      ensureModuleDirectoryExists()
+
+ensureModuleDirectoryExists = ->
+  if !fs.existsSync paths.application.composerModulesDir
+    fs.mkdirSync paths.application.composerModulesDir
