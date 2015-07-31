@@ -74,6 +74,8 @@ handleKnownErrorStates = (error) ->
   else if error.message.match /Did not recognize command/
     log.error error.message
     console.log "Please see `steroids help` for available commands."
+  else if error.message.match /not published/
+    log.error error.message
   else
     throw error
 

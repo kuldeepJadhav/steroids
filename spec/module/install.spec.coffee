@@ -14,6 +14,10 @@ describe "module", ->
       steroids.module.install().check ({stderr}) ->
         stderr.should.match /name required/
 
+    it "fails for a non-existing module", ->
+      steroids.module.install("dsfargeg").check ({stderr}) ->
+        stderr.should.match /not published/
+
     describe "with a valid module name as target", ->
       it "runs successfully", ->
         steroids.module.install("com.appgyver.comments").check ({stdout, stderr}) ->

@@ -1,15 +1,22 @@
 RuntimeConfig = require '../RuntimeConfig'
 
+MODULE_API_ROOT = RuntimeConfig.endpoints.getModuleApiRoot()
+
 module.exports = moduleUrls =
+  repository:
+    find: (moduleName) ->
+      "#{MODULE_API_ROOT}/repository/#{moduleName}"
+
   module:
     find: (moduleId) ->
-      "#{RuntimeConfig.endpoints.getModuleApiUrl()}/#{moduleId}"
+      "#{MODULE_API_ROOT}/modules/#{moduleId}"
 
-    create: RuntimeConfig.endpoints.getModuleApiUrl
+    create: ->
+      "#{MODULE_API_ROOT}/modules"
 
     version:
       create: (moduleId) ->
-        "#{RuntimeConfig.endpoints.getModuleApiUrl()}/#{moduleId}/versions"
+        "#{MODULE_API_ROOT}/modules/#{moduleId}/versions"
 
       update: (moduleId, moduleVersionId) ->
-        "#{RuntimeConfig.endpoints.getModuleApiUrl()}/#{moduleId}/versions/#{moduleVersionId}"
+        "#{MODULE_API_ROOT}/modules/#{moduleId}/versions/#{moduleVersionId}"
