@@ -1,6 +1,6 @@
 {
   "name": "steroids",
-  "version": "4.1.13",
+  "version": "4.1.14",
   "preferGlobal": "true",
   "license": "MIT",
   "author": "AppGyver <contact@appgyver.com>",
@@ -29,6 +29,10 @@
     {
       "name": "Petrus Repo",
       "email": "petrus.repo@appgyver.com"
+    },
+    {
+      "name": "Rafael Almeida",
+      "email": "rafael.almeida@appgyver.com"
     }
   ],
   "bin": {

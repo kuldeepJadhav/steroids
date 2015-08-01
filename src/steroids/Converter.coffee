@@ -68,6 +68,8 @@ class Converter
               title: configTab.title
               image_path: configTab.icon
               target_url: routingHelpers.parseLocation(configTab.location)
+              navigationBar:configTab.navigationBar
+              hidesNavigationBar:configTab.hidesNavigationBar
             tabs.push tab
 
         tabs
@@ -82,6 +84,8 @@ class Converter
               title: configTab.title
               image_path: configTab.icon
               target_url: configTab.location
+              navigationBar:configTab.navigationBar
+              hidesNavigationBar:configTab.hidesNavigationBar
             tabs.push tab
 
         tabs
