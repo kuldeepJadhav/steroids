@@ -24,10 +24,10 @@ after_failure:
 env:
 - LONGCAT=looooong
 deploy:
-  api_key:
-    secure: i8T8OnO/BEEg5v3vbotEm4Le8W4RF4y2YHkeMbkxJdxEzLFe1Lfoc/FQwRBJZA9CdWICFISgGGeq9jhbB74npPA8vF+W6NWUpENDklNZi8rLNdEb9gxLXKWXzQiBwLLuhihokapUs3ngWuhaKdduFAgyIzg12ZNXVJGyvwm4hHU=
   provider: npm
   email: hostmaster+npm@appgyver.com
+  api_key:
+    secure: cqoGzWdH4OKx29MVsJghkfMHJn3XMrL1ISbU3isaRPbARIIT3dB3obyk0B4JCpbO+4fNWVQXaM9s9nibMWoQKBvfkXpVaPwn81t+riQJzmb//C2mFmVuuSHV0zfFsZcF7uJ7/Vjw2qSGZ0iOkmYg+JZmlqvuJYErsmSaPkGi+Dk=
   on:
     tags: true
     all_branches: true
