@@ -25,9 +25,13 @@ describe "module", ->
         steroids.module.install("com.appgyver.install-test").check ({stdout, stderr}) ->
           stderr.should.be.empty
           stdout.should.match /installation complete/i
+          stdout.should.match /com\.appgyver\.install-test/
 
       it "creates a root directory for modules", ->
         fs.existsSync(steroids.path("composer_modules")).should.be.true
 
       it "creates a directory for the installed module", ->
         fs.existsSync(steroids.path("composer_modules", "com.appgyver.install-test")).should.be.true
+
+      it "extracts module files from zip to directory", ->
+        fs.existsSync(steroids.path("composer_modules", "com.appgyver.install-test", "index.html")).should.be.true

@@ -28,7 +28,7 @@ module.exports = installModule = (args) ->
       """
     )
     .tap (module) ->
-      console.log "About to install #{module.namespace}..."
+      console.log "About to install #{args.moduleName}..."
     .then(installModule getModuleInstallationTargetDir args.moduleName)
     .then ->
       log.ok "Module installation complete."
