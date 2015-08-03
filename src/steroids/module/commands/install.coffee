@@ -19,7 +19,9 @@ module.exports = installModule = (args) ->
       Please run again with the target module name as an argument.
     """
 
-  moduleApi.repository.findByName(args.moduleName)
+  moduleApi.repository
+    .findByName(args.moduleName)
+    .then(getLatestVersionZipUrl)
     .catch((e) ->
       throw new Error """
         Module '#{args.moduleName}' is not published in the repository.
@@ -27,13 +29,15 @@ module.exports = installModule = (args) ->
     )
     .tap (module) ->
       console.log "About to install #{module.namespace}..."
-    .then(getLatestVersionZipUrl)
     .then(installModule getModuleInstallationTargetDir args.moduleName)
     .then ->
       log.ok "Module installation complete."
 
 getLatestVersionZipUrl = (module) ->
   [ latestVersion ] = module.versions
+
+  if !latestVersion.published
+    throw new Error "No published version of module available"
 
   moduleZipUrl = latestVersion.source
 
