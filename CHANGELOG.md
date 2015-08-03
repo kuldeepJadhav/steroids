@@ -1,3 +1,8 @@
+## TODO
+
+Features:
+- `steroids module install` downloads Composer Modules from the public Composer Module repository
+
 ## 4.1.13 (2015-07-31)
 
 Changes:
