@@ -22,7 +22,7 @@ describe "module", ->
 
     describe "with a valid module name as target", ->
       it "runs successfully", ->
-        steroids.module.install("com.appgyver.comments").check ({stdout, stderr}) ->
+        steroids.module.install("com.appgyver.install-test").check ({stdout, stderr}) ->
           stderr.should.be.empty
           stdout.should.match /installation complete/i
 
@@ -30,4 +30,4 @@ describe "module", ->
         fs.existsSync(steroids.path("composer_modules")).should.be.true
 
       it "creates a directory for the installed module", ->
-        fs.existsSync(steroids.path("composer_modules", "com.appgyver.comments")).should.be.true
+        fs.existsSync(steroids.path("composer_modules", "com.appgyver.install-test")).should.be.true
