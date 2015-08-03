@@ -1,6 +1,8 @@
+path = require "path"
+fs = require 'fs'
+
 TestHelper = require "../test_helper"
 oauthTokenPath = require "../devgyver_oauth_token_path"
-path = require "path"
 
 module.exports = steroids = ->
   testHelper = new TestHelper
@@ -20,10 +22,19 @@ module.exports = steroids = ->
       runs ->
         runnerAssertions? runner
 
+  pathToAppFile = (parts) ->
+    path.join(testHelper.testAppPath, parts...)
+
   return new class SteroidsModuleCommandRunner
 
-    path: (parts...) ->
-      path.join(testHelper.testAppPath, parts...)
+    file: (parts...) ->
+      filepath = pathToAppFile parts
+
+      readJson: -> JSON.parse fs.readFileSync filepath
+      exists: -> fs.existsSync filepath
+      clean: ->
+        if fs.existsSync filepath
+          fs.unlinkSync filepath
 
     module:
       help: ->

@@ -1,5 +1,3 @@
-fs = require 'fs'
-
 require('chai').should()
 
 steroids = require('./steroids')()
@@ -28,10 +26,21 @@ describe "module", ->
           stdout.should.match /com\.appgyver\.install-test/
 
       it "creates a root directory for modules", ->
-        fs.existsSync(steroids.path("composer_modules")).should.be.true
+        steroids.file("composer_modules").exists().should.be.true
 
       it "creates a directory for the installed module", ->
-        fs.existsSync(steroids.path("composer_modules", "com.appgyver.install-test")).should.be.true
+        steroids.file("composer_modules", "com.appgyver.install-test").exists().should.be.true
 
       it "extracts module files from zip to directory", ->
-        fs.existsSync(steroids.path("composer_modules", "com.appgyver.install-test", "index.html")).should.be.true
+        steroids.file("composer_modules", "com.appgyver.install-test", "index.html").exists().should.be.true
+
+      it "creates module definition file for current project", ->
+        steroids.file("config", "module.json").exists().should.be.true
+
+      it "adds target module to module dependency list", ->
+        steroids.file("config", "module.json")
+          .readJson()
+          .should.have
+          .property("dependencies")
+          .property("com.appgyver.install-test")
+          .be.defined

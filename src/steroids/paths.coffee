@@ -104,6 +104,7 @@ class Paths
       appgyver: path.join @application.configDir, "appgyver.json"
       env: path.join @application.configDir, "env.json"
       deployment: argv.deploymentJsonPath ? path.join @application.configDir, "deployment.json"
+      package: path.join @application.configDir, "module.json"
 
   @application.sources =
     controllerDir: path.join @application.appDir, "controllers"

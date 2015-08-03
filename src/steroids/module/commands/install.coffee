@@ -8,8 +8,11 @@ log = require "../../log"
 paths = require "../../paths"
 
 moduleApi = require '../moduleApi'
+writeJsonStringTo = require '../writeJsonStringTo'
+readJsonConfigFrom = require '../readJsonConfigFrom'
 
 MODULE_DIR = paths.application.composerModulesDir
+MODULE_PACKAGE_PATH = paths.application.configs.module.package
 
 module.exports = installModule = (args) ->
   unless args.moduleName
@@ -21,7 +24,7 @@ module.exports = installModule = (args) ->
 
   moduleApi.repository
     .findByName(args.moduleName)
-    .then(getLatestVersionZipUrl)
+    .then(getLatestVersion)
     .catch((e) ->
       throw new Error """
         Module '#{args.moduleName}' is not published in the repository.
@@ -29,21 +32,27 @@ module.exports = installModule = (args) ->
     )
     .tap (module) ->
       console.log "About to install #{args.moduleName}..."
-    .then(installModule getModuleInstallationTargetDir args.moduleName)
+    .then (latestVersion) ->
+      installationTargetDir = getModuleInstallationTargetDir args.moduleName
+      sourceZip = latestVersion.source
+
+      installModule(installationTargetDir, sourceZip).then ->
+        readModulePackageDescription()
+          .catch(-> { dependencies: {} })
+          .then(addModuleDependency args.moduleName, latestVersion)
+          .then(writeModulePackageDescription)
     .then ->
       log.ok "Module installation complete."
 
-getLatestVersionZipUrl = (module) ->
+getLatestVersion = (module) ->
   [ latestVersion ] = module.versions
 
   if !latestVersion.published
     throw new Error "No published version of module available"
 
-  moduleZipUrl = latestVersion.source
+  latestVersion
 
-  moduleZipUrl
-
-installModule = (destination) -> (moduleZipUrl) ->
+installModule = (destination, moduleZipUrl) ->
   new Promise (resolve, reject) ->
     ensureModuleDirectoryExists()
 
@@ -60,3 +69,14 @@ ensureModuleDirectoryExists = ->
 
 getModuleInstallationTargetDir = (moduleName) ->
   path.join MODULE_DIR, moduleName
+
+addModuleDependency = (moduleName, installedVersion) -> (pkg) ->
+  pkg.dependencies[moduleName] = installedVersion
+  pkg
+
+readModulePackageDescription = ->
+  new Promise (resolve) ->
+    resolve readJsonConfigFrom MODULE_PACKAGE_PATH
+
+writeModulePackageDescription = writeJsonStringTo MODULE_PACKAGE_PATH
+
