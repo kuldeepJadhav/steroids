@@ -181,9 +181,10 @@ class Connect
 
       maker = =>
         return if isMaking
-        return unless shouldMake
+        
 
-        shouldMake = false
+        console.log "isMaking " + isMaking
+        
         isMaking = true
 
         steroidsCli.log
@@ -198,18 +199,24 @@ class Connect
             doFullReload()
         .then =>
           isMaking = false
+        console.log "value if should Make" + shouldMake  
 
-      setInterval maker, 100
+      
 
       appWatcher.on ["add", "change", "unlink"], (path)=>
-        shouldMake = true
+        console.log "Change detected in app"
+        maker();
+        return;
 
       wwwWatcher.on ["add", "change", "unlink"], (path)=>
-        shouldMake = true
+        console.log "Change detected in www folder"
+        maker();
+        return;
 
       configWatcher.on ["add", "change", "unlink"], (path)=>
         canBeLiveReload = false
-        shouldMake = true
+        maker();
+        return;
 
       userPaths = if steroidsCli.options.argv.watch
         [].concat(steroidsCli.options.argv.watch)
@@ -223,7 +230,8 @@ class Connect
             ignored: @watchExclude
 
           watcher.on ["add", "change", "unlink"], (path)=>
-            shouldMake = true
+            maker();
+            return;
 
       resolve()
 
