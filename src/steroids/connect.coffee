@@ -181,10 +181,6 @@ class Connect
 
       maker = =>
         return if isMaking
-        
-
-        console.log "isMaking " + isMaking
-        
         isMaking = true
 
         steroidsCli.log
@@ -199,17 +195,14 @@ class Connect
             doFullReload()
         .then =>
           isMaking = false
-        console.log "value if should Make" + shouldMake  
 
       
 
       appWatcher.on ["add", "change", "unlink"], (path)=>
-        console.log "Change detected in app"
         maker();
         return;
 
       wwwWatcher.on ["add", "change", "unlink"], (path)=>
-        console.log "Change detected in www folder"
         maker();
         return;
 
